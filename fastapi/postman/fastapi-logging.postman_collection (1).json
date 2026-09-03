@@ -1,0 +1,68 @@
+{
+  "info": {
+    "name": "FastAPI Logging - Proyecto",
+    "description": "Colección de requests para generar tráfico de prueba hacia la API, con el fin de producir logs variados (éxitos, 404, método no permitido) que Fluentd pueda recolectar.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "GET / (raíz, 200 OK)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/",
+          "host": ["{{base_url}}"],
+          "path": [""]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET /health (200 OK)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/health",
+          "host": ["{{base_url}}"],
+          "path": ["health"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET /ruta-inexistente (404, a propósito)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/ruta-inexistente",
+          "host": ["{{base_url}}"],
+          "path": ["ruta-inexistente"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "POST /health (405, método no permitido)",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/health",
+          "host": ["{{base_url}}"],
+          "path": ["health"]
+        }
+      },
+      "response": []
+    }
+  ]
+}

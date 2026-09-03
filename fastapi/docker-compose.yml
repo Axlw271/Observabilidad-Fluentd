@@ -1,0 +1,108 @@
+services:
+  fluentd:
+    # v1.19 (en vez de v1.16) porque necesitamos el parámetro
+    # symlink_path_use_relative, disponible desde esa versión.
+    image: fluent/fluentd:v1.19-1
+    container_name: fluentd
+    volumes:
+      # Monta tu configuración local dentro del contenedor, en la
+      # ruta donde la imagen oficial de fluentd busca su config
+      # por defecto (/fluentd/etc/fluent.conf).
+      - ./fluentd/conf:/fluentd/etc
+      # Monta también una carpeta local para los logs, para que
+      # sobrevivan aunque el contenedor de fluentd se reinicie o
+      # se borre (los volúmenes anónimos dentro del contenedor
+      # se perderían).
+      - ./fluentd/log:/fluentd/log
+    ports:
+      # Expone el puerto 24224 (protocolo forward) para que el
+      # contenedor de la API pueda enviarle logs por red.
+      - "24224:24224"
+
+  api:
+    build: .
+    container_name: fastapi_app
+    ports:
+      - "8000:8000"
+    depends_on:
+      # Espera a que el contenedor de fluentd haya arrancado antes
+      # de levantar la API. Esto NO garantiza que fluentd ya esté
+      # aceptando conexiones (solo que el contenedor inició), por
+      # eso usamos fluentd-async abajo, para que la API no truene
+      # si fluentd tarda unos segundos más en estar listo.
+      - fluentd
+    logging:
+      # Le decimos a Docker: en vez de guardar el stdout de este
+      # contenedor localmente (el driver "json-file" por defecto),
+      # mándalo a un servidor Fluentd.
+      driver: fluentd
+      options:
+        # Dirección del contenedor de fluentd. IMPORTANTE: usamos
+        # "localhost" y NO el nombre del servicio ("fluentd"), porque
+        # quien establece esta conexión es el DAEMON de Docker (no un
+        # proceso dentro de un contenedor), y el daemon no tiene acceso
+        # al DNS interno de la red de compose que resolvería el nombre
+        # "fluentd". Como el puerto 24224 ya está publicado al host
+        # (ver "ports" arriba en el servicio fluentd), localhost sí es
+        # alcanzable por el daemon.
+        fluentd-address: localhost:24224
+        # Etiqueta que identificará estos logs dentro de Fluentd.
+        # Coincide con el patrón docker.** que definimos en fluent.conf.
+        tag: docker.fastapi
+        # Evita que el contenedor de la API falle al arrancar si
+        # fluentd todavía no está listo para recibir conexiones;
+        # en vez de eso, reintenta en segundo plano.
+        fluentd-async: "true"
+
+  nginx:
+    image: nginx:1.27-alpine
+    container_name: nginx_proxy
+    depends_on:
+      # Nginx necesita que la API ya exista para poder reenviarle
+      # tráfico (aunque no garantiza que ya esté 100% lista, solo
+      # que el contenedor arrancó).
+      - api
+    ports:
+      # Expone nginx en el puerto 8080 de tu máquina. A partir de
+      # ahora, este es el punto de entrada real a tu aplicación:
+      # tu API sigue siendo alcanzable directamente en el 8000 (útil
+      # para comparar/depurar), pero el tráfico "oficial" pasa por
+      # aquí primero.
+      - "8080:80"
+    volumes:
+      # Monta tu configuración personalizada, reemplazando la que
+      # trae la imagen por defecto.
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    logging:
+      # Misma lógica que en la API: mandamos los logs de nginx
+      # (que ya vienen en JSON gracias a json_analytics) a Fluentd.
+      driver: fluentd
+      options:
+        fluentd-address: localhost:24224
+        # Etiqueta distinta a la de la API, pero que igual coincide
+        # con el patrón "docker.**" que ya tenemos en fluent.conf —
+        # no hace falta tocar esa configuración.
+        tag: docker.nginx
+        fluentd-async: "true"
+
+  locust:
+    image: locustio/locust
+    container_name: locust
+    depends_on:
+      - nginx
+    ports:
+      # Interfaz web de Locust: la abres en tu navegador en
+      # http://localhost:8089 para lanzar la simulación y ver
+      # estadísticas en tiempo real (peticiones/segundo, tiempos
+      # de respuesta, fallos, etc.).
+      - "8089:8089"
+    volumes:
+      - ./locust:/mnt/locust
+    # -f apunta al archivo con la definición de usuarios virtuales.
+    # --host es la URL base contra la que Locust va a disparar
+    # tráfico: usamos "nginx" (el nombre del servicio) en el puerto
+    # 80 interno — NO localhost:8080. Esta conexión la hace el
+    # propio proceso de Locust corriendo DENTRO de su contenedor
+    # (como con nginx -> api), así que el DNS interno de la red de
+    # compose sí funciona aquí sin problema.
+    command: -f /mnt/locust/locustfile.py --host http://nginxdock
