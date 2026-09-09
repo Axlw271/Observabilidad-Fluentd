@@ -106,3 +106,17 @@ services:
     # (como con nginx -> api), así que el DNS interno de la red de
     # compose sí funciona aquí sin problema.
     command: -f /mnt/locust/locustfile.py --host http://nginxdock
+
+# #CONFIGURACIÓN PARA OTEL COLLECTOR
+# otel-collector:
+#   image: otel/opentelemetry-collector
+#   volumes:
+#     - ./otel-collector-config.yaml:/etc/otelcol/config.yaml
+#   ports:
+#     - 1888:1888 # pprof extension
+#     - 8888:8888 # Prometheus metrics exposed by the Collector
+#     - 8889:8889 # Prometheus exporter metrics
+#     - 13133:13133 # health_check extension
+#     - 4317:4317 # OTLP gRPC receiver
+#     - 4318:4318 # OTLP http receiver
+#     - 55679:55679 # zpages extension
