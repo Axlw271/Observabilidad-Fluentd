@@ -1,3 +1,4 @@
+#Archivo provicional para modificar los headers de los logs que genera flask.
 from loguru import logger
 import sys
 import time
