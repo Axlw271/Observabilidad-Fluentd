@@ -1,0 +1,1725 @@
+ Image observabilidad-fluentd-api Building 
+ Image observabilidad-fluentd-flask Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 1.12kB 0.0s done
+#1 DONE 0.0s
+
+#2 [flask internal] load build definition from Dockerfile
+#2 transferring dockerfile: 425B done
+#2 DONE 0.0s
+
+#3 [api internal] load build definition from Dockerfile
+#3 transferring dockerfile: 493B done
+#3 DONE 0.0s
+
+#4 [auth] library/python:pull token for registry-1.docker.io
+#4 DONE 0.0s
+
+#5 [api internal] load metadata for docker.io/library/python:3.11-slim
+#5 DONE 0.5s
+
+#6 [flask internal] load .dockerignore
+#6 transferring context: 2B done
+#6 DONE 0.0s
+
+#7 [api internal] load .dockerignore
+#7 transferring context: 2B done
+#7 DONE 0.0s
+
+#8 [flask internal] load build context
+#8 transferring context: 223B done
+#8 DONE 0.0s
+
+#9 [api internal] load build context
+#9 transferring context: 164B done
+#9 DONE 0.0s
+
+#10 [api 1/6] FROM docker.io/library/python:3.11-slim@sha256:bab1b7ef4b450c81002278d035eff85ebe394ae94df904f7a3ba14f7e16e487b
+#10 resolve docker.io/library/python:3.11-slim@sha256:bab1b7ef4b450c81002278d035eff85ebe394ae94df904f7a3ba14f7e16e487b 0.0s done
+#10 DONE 0.0s
+
+#11 [api 2/6] WORKDIR /code
+#11 CACHED
+
+#12 [api 4/6] COPY requirements.txt .
+#12 CACHED
+
+#13 [flask 3/6] RUN apt-get update && apt-get install -y --no-install-recommends curl     && rm -rf /var/lib/apt/lists/*
+#13 CACHED
+
+#14 [flask 4/6] COPY requirements.txt .
+#14 DONE 0.0s
+
+#15 [flask 5/6] RUN pip install --no-cache-dir -r requirements.txt
+#15 1.725 Collecting flask>=3.0.0 (from -r requirements.txt (line 1))
+#15 1.815   Downloading flask-3.1.3-py3-none-any.whl.metadata (3.2 kB)
+#15 1.863 Collecting opentelemetry-api (from -r requirements.txt (line 2))
+#15 1.876   Downloading opentelemetry_api-1.45.0-py3-none-any.whl.metadata (1.4 kB)
+#15 1.921 Collecting opentelemetry-sdk (from -r requirements.txt (line 3))
+#15 1.935   Downloading opentelemetry_sdk-1.45.0-py3-none-any.whl.metadata (1.6 kB)
+#15 1.972 Collecting opentelemetry-exporter-otlp-proto-http (from -r requirements.txt (line 4))
+#15 1.986   Downloading opentelemetry_exporter_otlp_proto_http-1.45.0-py3-none-any.whl.metadata (3.1 kB)
+#15 2.016 Collecting blinker>=1.9.0 (from flask>=3.0.0->-r requirements.txt (line 1))
+#15 2.030   Downloading blinker-1.9.0-py3-none-any.whl.metadata (1.6 kB)
+#15 2.074 Collecting click>=8.1.3 (from flask>=3.0.0->-r requirements.txt (line 1))
+#15 2.086   Downloading click-8.5.0-py3-none-any.whl.metadata (2.6 kB)
+#15 2.111 Collecting itsdangerous>=2.2.0 (from flask>=3.0.0->-r requirements.txt (line 1))
+#15 2.127   Downloading itsdangerous-2.2.0-py3-none-any.whl.metadata (1.9 kB)
+#15 2.158 Collecting jinja2>=3.1.2 (from flask>=3.0.0->-r requirements.txt (line 1))
+#15 2.171   Downloading jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+#15 2.266 Collecting markupsafe>=2.1.1 (from flask>=3.0.0->-r requirements.txt (line 1))
+#15 2.280   Downloading markupsafe-3.0.3-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.7 kB)
+#15 2.329 Collecting werkzeug>=3.1.0 (from flask>=3.0.0->-r requirements.txt (line 1))
+#15 2.342   Downloading werkzeug-3.1.9-py3-none-any.whl.metadata (4.1 kB)
+#15 2.379 Collecting typing-extensions>=4.5.0 (from opentelemetry-api->-r requirements.txt (line 2))
+#15 2.392   Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+#15 2.444 Collecting opentelemetry-semantic-conventions==0.66b0 (from opentelemetry-sdk->-r requirements.txt (line 3))
+#15 2.457   Downloading opentelemetry_semantic_conventions-0.66b0-py3-none-any.whl.metadata (2.4 kB)
+#15 2.510 Collecting googleapis-common-protos~=1.52 (from opentelemetry-exporter-otlp-proto-http->-r requirements.txt (line 4))
+#15 2.523   Downloading googleapis_common_protos-1.75.5-py3-none-any.whl.metadata (8.5 kB)
+#15 2.554 Collecting opentelemetry-exporter-http-transport==0.66b0 (from opentelemetry-exporter-http-transport[urllib3]==0.66b0->opentelemetry-exporter-otlp-proto-http->-r requirements.txt (line 4))
+#15 2.567   Downloading opentelemetry_exporter_http_transport-0.66b0-py3-none-any.whl.metadata (2.3 kB)
+#15 2.591 Collecting opentelemetry-exporter-otlp-common==0.66b0 (from opentelemetry-exporter-otlp-proto-http->-r requirements.txt (line 4))
+#15 2.605   Downloading opentelemetry_exporter_otlp_common-0.66b0-py3-none-any.whl.metadata (1.9 kB)
+#15 2.635 Collecting opentelemetry-exporter-otlp-proto-common==1.45.0 (from opentelemetry-exporter-otlp-proto-http->-r requirements.txt (line 4))
+#15 2.648   Downloading opentelemetry_exporter_otlp_proto_common-1.45.0-py3-none-any.whl.metadata (1.8 kB)
+#15 2.690 Collecting opentelemetry-proto==1.45.0 (from opentelemetry-exporter-otlp-proto-http->-r requirements.txt (line 4))
+#15 2.704   Downloading opentelemetry_proto-1.45.0-py3-none-any.whl.metadata (2.3 kB)
+#15 2.776 Collecting urllib3>=1.26 (from opentelemetry-exporter-http-transport[urllib3]==0.66b0->opentelemetry-exporter-otlp-proto-http->-r requirements.txt (line 4))
+#15 2.789   Downloading urllib3-2.8.0-py3-none-any.whl.metadata (7.4 kB)
+#15 3.085 Collecting protobuf<8.0,>=5.0 (from opentelemetry-proto==1.45.0->opentelemetry-exporter-otlp-proto-http->-r requirements.txt (line 4))
+#15 3.098   Downloading protobuf-7.36.2-cp310-abi3-manylinux2014_x86_64.whl.metadata (595 bytes)
+#15 3.171 Downloading flask-3.1.3-py3-none-any.whl (103 kB)
+#15 3.186    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 103.4/103.4 kB 8.2 MB/s eta 0:00:00
+#15 3.200 Downloading opentelemetry_api-1.45.0-py3-none-any.whl (60 kB)
+#15 3.203    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 60.0/60.0 kB 101.7 MB/s eta 0:00:00
+#15 3.217 Downloading opentelemetry_sdk-1.45.0-py3-none-any.whl (140 kB)
+#15 3.229    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 140.1/140.1 kB 12.7 MB/s eta 0:00:00
+#15 3.243 Downloading opentelemetry_semantic_conventions-0.66b0-py3-none-any.whl (206 kB)
+#15 3.257    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 206.3/206.3 kB 18.1 MB/s eta 0:00:00
+#15 3.275 Downloading opentelemetry_exporter_otlp_proto_http-1.45.0-py3-none-any.whl (22 kB)
+#15 3.295 Downloading opentelemetry_exporter_http_transport-0.66b0-py3-none-any.whl (12 kB)
+#15 3.316 Downloading opentelemetry_exporter_otlp_common-0.66b0-py3-none-any.whl (12 kB)
+#15 3.329 Downloading opentelemetry_exporter_otlp_proto_common-1.45.0-py3-none-any.whl (15 kB)
+#15 3.342 Downloading opentelemetry_proto-1.45.0-py3-none-any.whl (72 kB)
+#15 3.346    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 72.5/72.5 kB 40.5 MB/s eta 0:00:00
+#15 3.359 Downloading blinker-1.9.0-py3-none-any.whl (8.5 kB)
+#15 3.373 Downloading click-8.5.0-py3-none-any.whl (125 kB)
+#15 3.378    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 125.3/125.3 kB 35.2 MB/s eta 0:00:00
+#15 3.392 Downloading googleapis_common_protos-1.75.5-py3-none-any.whl (307 kB)
+#15 3.418    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 307.7/307.7 kB 12.6 MB/s eta 0:00:00
+#15 3.431 Downloading itsdangerous-2.2.0-py3-none-any.whl (16 kB)
+#15 3.444 Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)
+#15 3.454    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 134.9/134.9 kB 16.2 MB/s eta 0:00:00
+#15 3.467 Downloading markupsafe-3.0.3-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (22 kB)
+#15 3.481 Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+#15 3.486    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 45.6/45.6 kB 14.1 MB/s eta 0:00:00
+#15 3.498 Downloading werkzeug-3.1.9-py3-none-any.whl (228 kB)
+#15 3.519    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 228.7/228.7 kB 12.8 MB/s eta 0:00:00
+#15 3.532 Downloading protobuf-7.36.2-cp310-abi3-manylinux2014_x86_64.whl (343 kB)
+#15 3.550    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 343.2/343.2 kB 22.1 MB/s eta 0:00:00
+#15 3.563 Downloading urllib3-2.8.0-py3-none-any.whl (135 kB)
+#15 3.576    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 135.7/135.7 kB 12.5 MB/s eta 0:00:00
+#15 3.686 Installing collected packages: urllib3, typing-extensions, protobuf, markupsafe, itsdangerous, click, blinker, werkzeug, opentelemetry-proto, opentelemetry-api, jinja2, googleapis-common-protos, opentelemetry-semantic-conventions, opentelemetry-exporter-otlp-proto-common, opentelemetry-exporter-http-transport, flask, opentelemetry-sdk, opentelemetry-exporter-otlp-common, opentelemetry-exporter-otlp-proto-http
+#15 4.640 Successfully installed blinker-1.9.0 click-8.5.0 flask-3.1.3 googleapis-common-protos-1.75.5 itsdangerous-2.2.0 jinja2-3.1.6 markupsafe-3.0.3 opentelemetry-api-1.45.0 opentelemetry-exporter-http-transport-0.66b0 opentelemetry-exporter-otlp-common-0.66b0 opentelemetry-exporter-otlp-proto-common-1.45.0 opentelemetry-exporter-otlp-proto-http-1.45.0 opentelemetry-proto-1.45.0 opentelemetry-sdk-1.45.0 opentelemetry-semantic-conventions-0.66b0 protobuf-7.36.2 typing-extensions-4.16.0 urllib3-2.8.0 werkzeug-3.1.9
+#15 4.640 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+#15 4.806 
+#15 4.806 [notice] A new release of pip is available: 24.0 -> 26.2.1
+#15 4.806 [notice] To update, run: pip install --upgrade pip
+#15 DONE 5.4s
+
+#16 [api 5/6] RUN pip install --no-cache-dir -r requirements.txt
+#16 1.850 Collecting fastapi>=0.110.0 (from -r requirements.txt (line 1))
+#16 1.891   Downloading fastapi-0.142.2-py3-none-any.whl.metadata (27 kB)
+#16 1.956 Collecting uvicorn>=0.28.0 (from uvicorn[standard]>=0.28.0->-r requirements.txt (line 2))
+#16 1.969   Downloading uvicorn-0.54.0-py3-none-any.whl.metadata (6.6 kB)
+#16 2.066 Collecting starlette>=0.46.0 (from fastapi>=0.110.0->-r requirements.txt (line 1))
+#16 2.078   Downloading starlette-1.7.0-py3-none-any.whl.metadata (6.6 kB)
+#16 2.283 Collecting pydantic>=2.9.0 (from fastapi>=0.110.0->-r requirements.txt (line 1))
+#16 2.295   Downloading pydantic-2.13.5-py3-none-any.whl.metadata (110 kB)
+#16 2.308      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 110.2/110.2 kB 10.6 MB/s eta 0:00:00
+#16 2.348 Collecting typing-extensions>=4.8.0 (from fastapi>=0.110.0->-r requirements.txt (line 1))
+#16 2.362   Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+#16 2.388 Collecting typing-inspection>=0.4.2 (from fastapi>=0.110.0->-r requirements.txt (line 1))
+#16 2.400   Downloading typing_inspection-0.4.4-py3-none-any.whl.metadata (2.6 kB)
+#16 2.422 Collecting annotated-doc>=0.0.2 (from fastapi>=0.110.0->-r requirements.txt (line 1))
+#16 2.433   Downloading annotated_doc-0.0.5-py3-none-any.whl.metadata (6.5 kB)
+#16 2.481 Collecting opentelemetry-api>=1.44.0 (from fastapi>=0.110.0->-r requirements.txt (line 1))
+#16 2.493   Downloading opentelemetry_api-1.45.0-py3-none-any.whl.metadata (1.4 kB)
+#16 2.571 Collecting click>=7.0 (from uvicorn>=0.28.0->uvicorn[standard]>=0.28.0->-r requirements.txt (line 2))
+#16 2.581   Downloading click-8.5.0-py3-none-any.whl.metadata (2.6 kB)
+#16 2.608 Collecting h11>=0.8 (from uvicorn>=0.28.0->uvicorn[standard]>=0.28.0->-r requirements.txt (line 2))
+#16 2.620   Downloading h11-0.16.0-py3-none-any.whl.metadata (8.3 kB)
+#16 2.687 Collecting httptools>=0.8.0 (from uvicorn[standard]>=0.28.0->-r requirements.txt (line 2))
+#16 2.698   Downloading httptools-0.8.0-cp311-cp311-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (3.5 kB)
+#16 2.731 Collecting python-dotenv>=0.13 (from uvicorn[standard]>=0.28.0->-r requirements.txt (line 2))
+#16 2.743   Downloading python_dotenv-1.2.4-py3-none-any.whl.metadata (29 kB)
+#16 2.802 Collecting pyyaml>=5.1 (from uvicorn[standard]>=0.28.0->-r requirements.txt (line 2))
+#16 2.813   Downloading pyyaml-6.0.3-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+#16 2.884 Collecting uvloop>=0.15.1 (from uvicorn[standard]>=0.28.0->-r requirements.txt (line 2))
+#16 2.895   Downloading uvloop-0.23.0-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (5.1 kB)
+#16 3.012 Collecting watchfiles>=0.20 (from uvicorn[standard]>=0.28.0->-r requirements.txt (line 2))
+#16 3.023   Downloading watchfiles-1.3.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.9 kB)
+#16 3.189 Collecting websockets>=13.0 (from uvicorn[standard]>=0.28.0->-r requirements.txt (line 2))
+#16 3.201   Downloading websockets-17.1-cp311-cp311-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (6.3 kB)
+#16 3.247 Collecting annotated-types>=0.6.0 (from pydantic>=2.9.0->fastapi>=0.110.0->-r requirements.txt (line 1))
+#16 3.260   Downloading annotated_types-0.8.0-py3-none-any.whl.metadata (15 kB)
+#16 4.353 Collecting pydantic-core==2.46.5 (from pydantic>=2.9.0->fastapi>=0.110.0->-r requirements.txt (line 1))
+#16 4.367   Downloading pydantic_core-2.46.5-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.6 kB)
+#16 4.426 Collecting anyio<5,>=4.0.0 (from starlette>=0.46.0->fastapi>=0.110.0->-r requirements.txt (line 1))
+#16 4.437   Downloading anyio-4.15.1-py3-none-any.whl.metadata (4.7 kB)
+#16 4.514 Collecting idna>=2.8 (from anyio<5,>=4.0.0->starlette>=0.46.0->fastapi>=0.110.0->-r requirements.txt (line 1))
+#16 4.525   Downloading idna-3.20-py3-none-any.whl.metadata (7.2 kB)
+#16 4.552 Downloading fastapi-0.142.2-py3-none-any.whl (144 kB)
+#16 4.563    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 144.4/144.4 kB 15.2 MB/s eta 0:00:00
+#16 4.575 Downloading uvicorn-0.54.0-py3-none-any.whl (87 kB)
+#16 4.578    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 87.4/87.4 kB 64.1 MB/s eta 0:00:00
+#16 4.589 Downloading annotated_doc-0.0.5-py3-none-any.whl (5.3 kB)
+#16 4.601 Downloading click-8.5.0-py3-none-any.whl (125 kB)
+#16 4.605    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 125.3/125.3 kB 69.1 MB/s eta 0:00:00
+#16 4.616 Downloading h11-0.16.0-py3-none-any.whl (37 kB)
+#16 4.628 Downloading httptools-0.8.0-cp311-cp311-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (464 kB)
+#16 4.649    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 464.7/464.7 kB 26.8 MB/s eta 0:00:00
+#16 4.660 Downloading opentelemetry_api-1.45.0-py3-none-any.whl (60 kB)
+#16 4.662    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 60.0/60.0 kB 161.9 MB/s eta 0:00:00
+#16 4.674 Downloading pydantic-2.13.5-py3-none-any.whl (472 kB)
+#16 4.696    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 472.6/472.6 kB 24.2 MB/s eta 0:00:00
+#16 4.707 Downloading pydantic_core-2.46.5-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (2.1 MB)
+#16 4.846    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.1/2.1 MB 15.1 MB/s eta 0:00:00
+#16 4.857 Downloading python_dotenv-1.2.4-py3-none-any.whl (23 kB)
+#16 4.868 Downloading pyyaml-6.0.3-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (806 kB)
+#16 4.905    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 806.6/806.6 kB 25.3 MB/s eta 0:00:00
+#16 4.918 Downloading starlette-1.7.0-py3-none-any.whl (78 kB)
+#16 4.924    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 79.0/79.0 kB 21.1 MB/s eta 0:00:00
+#16 4.936 Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+#16 4.941    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 45.6/45.6 kB 17.3 MB/s eta 0:00:00
+#16 4.953 Downloading typing_inspection-0.4.4-py3-none-any.whl (14 kB)
+#16 4.964 Downloading uvloop-0.23.0-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (4.0 MB)
+#16 5.138    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.0/4.0 MB 23.2 MB/s eta 0:00:00
+#16 5.150 Downloading watchfiles-1.3.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (458 kB)
+#16 5.172    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 458.4/458.4 kB 26.3 MB/s eta 0:00:00
+#16 5.186 Downloading websockets-17.1-cp311-cp311-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (224 kB)
+#16 5.196    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 224.3/224.3 kB 33.2 MB/s eta 0:00:00
+#16 5.209 Downloading annotated_types-0.8.0-py3-none-any.whl (13 kB)
+#16 5.221 Downloading anyio-4.15.1-py3-none-any.whl (132 kB)
+#16 5.232    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 132.1/132.1 kB 16.6 MB/s eta 0:00:00
+#16 5.244 Downloading idna-3.20-py3-none-any.whl (69 kB)
+#16 5.253    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 69.6/69.6 kB 12.3 MB/s eta 0:00:00
+#16 ...
+
+#17 [flask 6/6] COPY . .
+#17 DONE 0.1s
+
+#16 [api 5/6] RUN pip install --no-cache-dir -r requirements.txt
+#16 5.542 Installing collected packages: websockets, uvloop, typing-extensions, pyyaml, python-dotenv, idna, httptools, h11, click, annotated-types, annotated-doc, uvicorn, typing-inspection, pydantic-core, opentelemetry-api, anyio, watchfiles, starlette, pydantic, fastapi
+#16 ...
+
+#18 [flask] exporting to image
+#18 exporting layers
+#18 exporting layers 1.1s done
+#18 exporting manifest sha256:8defbbac6c2ceee2bc26cac270501354677929ae0e0af37d7776cef9d6261532 0.0s done
+#18 exporting config sha256:6e44c2fd47d785aaad4f7715d30124fd07931da65fb554849d767a119d7693ec 0.0s done
+#18 exporting attestation manifest sha256:8312a98c2df527c837adc3ce98993aab5dc753bcdd5a43070f65a11b137208c2 0.0s done
+#18 exporting manifest list sha256:02f1257514a48bbcb621bb3f2d83bccb2e76fbf959cf177e5751b16b0ad5e134 0.0s done
+#18 naming to docker.io/library/observabilidad-fluentd-flask:latest done
+#18 unpacking to docker.io/library/observabilidad-fluentd-flask:latest
+#18 unpacking to docker.io/library/observabilidad-fluentd-flask:latest 0.5s done
+#18 DONE 1.7s
+
+#19 [flask] resolving provenance for metadata file
+#19 DONE 0.0s
+
+#16 [api 5/6] RUN pip install --no-cache-dir -r requirements.txt
+#16 6.926 Successfully installed annotated-doc-0.0.5 annotated-types-0.8.0 anyio-4.15.1 click-8.5.0 fastapi-0.142.2 h11-0.16.0 httptools-0.8.0 idna-3.20 opentelemetry-api-1.45.0 pydantic-2.13.5 pydantic-core-2.46.5 python-dotenv-1.2.4 pyyaml-6.0.3 starlette-1.7.0 typing-extensions-4.16.0 typing-inspection-0.4.4 uvicorn-0.54.0 uvloop-0.23.0 watchfiles-1.3.0 websockets-17.1
+#16 6.927 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+#16 7.036 
+#16 7.036 [notice] A new release of pip is available: 24.0 -> 26.2.1
+#16 7.036 [notice] To update, run: pip install --upgrade pip
+#16 DONE 8.1s
+
+#20 [api 6/6] COPY ./app ./app
+#20 DONE 0.0s
+
+#21 [api] exporting to image
+#21 exporting layers 1.9s done
+#21 exporting manifest sha256:563a3a982d23688c6cb45e660be72e10d4cf6c6f900aa1e25da843e1a46addb5 0.0s done
+#21 exporting config sha256:f6c36e2eb1a26046afd7d07c1bd37215cbee21b0a61b2d733f79d82a2e36aca7 0.0s done
+#21 exporting attestation manifest sha256:43da19924b18f7ebdf8be0a0d55bd6f89c0e0f46d1bcdd8d3ee2c9cac90a4137 0.0s done
+#21 exporting manifest list sha256:9d94f0e4576ed8e520487ea125dab3abd38910d896a1a0e28aff3f887634f554
+#21 exporting manifest list sha256:9d94f0e4576ed8e520487ea125dab3abd38910d896a1a0e28aff3f887634f554 0.0s done
+#21 naming to docker.io/library/observabilidad-fluentd-api:latest done
+#21 unpacking to docker.io/library/observabilidad-fluentd-api:latest
+#21 unpacking to docker.io/library/observabilidad-fluentd-api:latest 0.4s done
+#21 DONE 2.5s
+
+#22 [api] resolving provenance for metadata file
+#22 DONE 0.0s
+ Image observabilidad-fluentd-flask Built 
+ Image observabilidad-fluentd-api Built 
+ Network observabilidad-fluentd_default Creating 
+ Network observabilidad-fluentd_default Creating 
+ Network observabilidad-fluentd_default Created 
+ Network observabilidad-fluentd_default Created 
+ Container fluentd Creating 
+ Container jaeger Creating 
+ Container prometheus Creating 
+ Container otel-collector Creating 
+ Container flask_app Creating 
+ Container prometheus Created 
+ Container flask_app Created 
+ Container otel-collector Created 
+ Container jaeger Created 
+ Container fluentd Created 
+ Container fastapi_app Creating 
+ Container fastapi_app Created 
+ Container nginx_proxy Creating 
+ Container nginx_proxy Created 
+ Container locust Creating 
+ Container locust Created 
+ Container jaeger Starting 
+ Container flask_app Starting 
+ Container otel-collector Starting 
+ Container prometheus Starting 
+ Container fluentd Starting 
+ Container jaeger Started 
+ Container flask_app Started 
+ Container otel-collector Started 
+ Container prometheus Started 
+ Container fluentd Started 
+ Container fastapi_app Starting 
+ Container fastapi_app Started 
+ Container nginx_proxy Starting 
+ Container nginx_proxy Started 
+ Container locust Starting 
+ Container locust Started 
+ Image observabilidad-fluentd-flask Building 
+ Image observabilidad-fluentd-api Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 1.12kB 0.0s done
+#1 DONE 0.0s
+
+#2 [flask internal] load build definition from Dockerfile
+#2 transferring dockerfile: 425B 0.0s done
+#2 DONE 0.0s
+
+#3 [api internal] load build definition from Dockerfile
+#3 transferring dockerfile: 493B done
+#3 DONE 0.0s
+
+#4 [api internal] load metadata for docker.io/library/python:3.11-slim
+#4 DONE 0.2s
+
+#5 [flask internal] load .dockerignore
+#5 transferring context: 2B done
+#5 DONE 0.0s
+
+#6 [api internal] load .dockerignore
+#6 transferring context: 2B done
+#6 DONE 0.0s
+
+#7 [api internal] load build context
+#7 transferring context: 164B done
+#7 DONE 0.0s
+
+#8 [flask internal] load build context
+#8 transferring context: 125B done
+#8 DONE 0.0s
+
+#9 [flask 1/6] FROM docker.io/library/python:3.11-slim@sha256:bab1b7ef4b450c81002278d035eff85ebe394ae94df904f7a3ba14f7e16e487b
+#9 resolve docker.io/library/python:3.11-slim@sha256:bab1b7ef4b450c81002278d035eff85ebe394ae94df904f7a3ba14f7e16e487b 0.0s done
+#9 DONE 0.0s
+
+#10 [flask 5/6] RUN pip install --no-cache-dir -r requirements.txt
+#10 CACHED
+
+#11 [flask 4/6] COPY requirements.txt .
+#11 CACHED
+
+#12 [flask 3/6] RUN apt-get update && apt-get install -y --no-install-recommends curl     && rm -rf /var/lib/apt/lists/*
+#12 CACHED
+
+#13 [flask 2/6] WORKDIR /code
+#13 CACHED
+
+#14 [api 4/6] COPY requirements.txt .
+#14 CACHED
+
+#15 [api 5/6] RUN pip install --no-cache-dir -r requirements.txt
+#15 CACHED
+
+#16 [flask 6/6] COPY . .
+#16 CACHED
+
+#17 [api 6/6] COPY ./app ./app
+#17 CACHED
+
+#18 [flask] exporting to image
+#18 exporting layers done
+#18 exporting manifest sha256:8defbbac6c2ceee2bc26cac270501354677929ae0e0af37d7776cef9d6261532 done
+#18 exporting config sha256:6e44c2fd47d785aaad4f7715d30124fd07931da65fb554849d767a119d7693ec done
+#18 exporting attestation manifest sha256:87fa4f66dd1d8d21b89d2ea29bdcc0deb176487e16b142d9057927550d42fdea 0.0s done
+#18 exporting manifest list sha256:2046b1b392f2f8694a55411283c1c99710c7dab8c87f644b79c35817808b68aa
+#18 exporting manifest list sha256:2046b1b392f2f8694a55411283c1c99710c7dab8c87f644b79c35817808b68aa 0.0s done
+#18 naming to docker.io/library/observabilidad-fluentd-flask:latest done
+#18 unpacking to docker.io/library/observabilidad-fluentd-flask:latest done
+#18 DONE 0.1s
+
+#19 [api] exporting to image
+#19 exporting layers done
+#19 exporting manifest sha256:563a3a982d23688c6cb45e660be72e10d4cf6c6f900aa1e25da843e1a46addb5 done
+#19 exporting config sha256:f6c36e2eb1a26046afd7d07c1bd37215cbee21b0a61b2d733f79d82a2e36aca7 done
+#19 exporting attestation manifest sha256:d5e36c23194c670974981d5fb0da3845fc30f888ca05b14dcf6bbb0873534549 0.0s done
+#19 exporting manifest list sha256:bc830c21e63b5baf06e33c4bb8f075a868c6dad5e56dcfdfc5435a406ef5c87c 0.0s done
+#19 naming to docker.io/library/observabilidad-fluentd-api:latest done
+#19 unpacking to docker.io/library/observabilidad-fluentd-api:latest done
+#19 DONE 0.1s
+
+#20 [api] resolving provenance for metadata file
+#20 DONE 0.0s
+
+#21 [flask] resolving provenance for metadata file
+#21 DONE 0.0s
+ Image observabilidad-fluentd-api Built 
+ Image observabilidad-fluentd-flask Built 
+ Network observabilidad-fluentd_default Creating 
+ Network observabilidad-fluentd_default Creating 
+ Network observabilidad-fluentd_default Created 
+ Network observabilidad-fluentd_default Created 
+ Container otel-collector Creating 
+ Container jaeger Creating 
+ Container fluentd Creating 
+ Container prometheus Creating 
+ Container flask_app Creating 
+ Container fluentd Created 
+ Container fastapi_app Creating 
+ Container flask_app Created 
+ Container prometheus Created 
+ Container jaeger Created 
+ Container otel-collector Created 
+ Container fastapi_app Created 
+ Container nginx_proxy Creating 
+ Container nginx_proxy Created 
+ Container locust Creating 
+ Container locust Created 
+ Container prometheus Starting 
+ Container fluentd Starting 
+ Container otel-collector Starting 
+ Container flask_app Starting 
+ Container jaeger Starting 
+ Container prometheus Started 
+ Container fluentd Started 
+ Container fastapi_app Starting 
+ Container otel-collector Started 
+ Container flask_app Started 
+ Container jaeger Started 
+ Container fastapi_app Started 
+ Container nginx_proxy Starting 
+ Container nginx_proxy Started 
+ Container locust Starting 
+ Container locust Started 
+ Image observabilidad-fluentd-flask Building 
+ Image observabilidad-fluentd-api Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 1.12kB 0.0s done
+#1 DONE 0.0s
+
+#2 [flask internal] load build definition from Dockerfile
+#2 transferring dockerfile: 425B done
+#2 DONE 0.0s
+
+#3 [api internal] load build definition from Dockerfile
+#3 transferring dockerfile: 493B done
+#3 DONE 0.0s
+
+#4 [auth] library/python:pull token for registry-1.docker.io
+#4 DONE 0.0s
+
+#5 [api internal] load metadata for docker.io/library/python:3.11-slim
+#5 DONE 1.0s
+
+#6 [flask internal] load .dockerignore
+#6 transferring context: 2B done
+#6 DONE 0.0s
+
+#7 [api internal] load .dockerignore
+#7 transferring context: 2B done
+#7 DONE 0.0s
+
+#8 [api internal] load build context
+#8 transferring context: 164B done
+#8 DONE 0.0s
+
+#9 [flask 1/6] FROM docker.io/library/python:3.11-slim@sha256:bab1b7ef4b450c81002278d035eff85ebe394ae94df904f7a3ba14f7e16e487b
+#9 resolve docker.io/library/python:3.11-slim@sha256:bab1b7ef4b450c81002278d035eff85ebe394ae94df904f7a3ba14f7e16e487b 0.0s done
+#9 DONE 0.0s
+
+#10 [api 5/6] RUN pip install --no-cache-dir -r requirements.txt
+#10 CACHED
+
+#11 [api 2/6] WORKDIR /code
+#11 CACHED
+
+#12 [api 3/6] RUN apt-get update && apt-get install -y --no-install-recommends curl     && rm -rf /var/lib/apt/lists/*
+#12 CACHED
+
+#13 [api 4/6] COPY requirements.txt .
+#13 CACHED
+
+#14 [api 6/6] COPY ./app ./app
+#14 CACHED
+
+#15 [api] exporting to image
+#15 exporting layers done
+#15 exporting manifest sha256:563a3a982d23688c6cb45e660be72e10d4cf6c6f900aa1e25da843e1a46addb5 done
+#15 exporting config sha256:f6c36e2eb1a26046afd7d07c1bd37215cbee21b0a61b2d733f79d82a2e36aca7 done
+#15 exporting attestation manifest sha256:6889376fa1fbaa3d23f2b1b7ef2ec2bc6e2d4b0585e11747bf1ef7b4c9f14a8f 0.0s done
+#15 exporting manifest list sha256:61db21a59d91d08626c6befd5e52cb71855975c483bb15c8af8c1d0611b9f7cc 0.0s done
+#15 naming to docker.io/library/observabilidad-fluentd-api:latest
+#15 naming to docker.io/library/observabilidad-fluentd-api:latest done
+#15 unpacking to docker.io/library/observabilidad-fluentd-api:latest done
+#15 DONE 0.1s
+
+#16 [flask internal] load build context
+#16 transferring context: 125B 0.2s done
+#16 DONE 0.2s
+
+#11 [flask 2/6] WORKDIR /code
+#11 CACHED
+
+#12 [flask 3/6] RUN apt-get update && apt-get install -y --no-install-recommends curl     && rm -rf /var/lib/apt/lists/*
+#12 CACHED
+
+#17 [flask 4/6] COPY requirements.txt .
+#17 CACHED
+
+#18 [flask 5/6] RUN pip install --no-cache-dir -r requirements.txt
+#18 CACHED
+
+#19 [flask 6/6] COPY . .
+#19 CACHED
+
+#20 [flask] exporting to image
+#20 exporting layers done
+#20 exporting manifest sha256:8defbbac6c2ceee2bc26cac270501354677929ae0e0af37d7776cef9d6261532 done
+#20 exporting config sha256:6e44c2fd47d785aaad4f7715d30124fd07931da65fb554849d767a119d7693ec done
+#20 exporting attestation manifest sha256:51deb1a1b5eba492f10264dffecedecef722c8fcba5b94456b8d0bfcd66a8b63 0.0s done
+#20 exporting manifest list sha256:3f06df7ca47a659942db1e7256814dd83d83457e2d63d4ae444b07114232e7f2 0.0s done
+#20 naming to docker.io/library/observabilidad-fluentd-flask:latest done
+#20 unpacking to docker.io/library/observabilidad-fluentd-flask:latest done
+#20 DONE 0.1s
+
+#21 [api] resolving provenance for metadata file
+#21 ...
+
+#22 [flask] resolving provenance for metadata file
+#22 DONE 0.2s
+
+#21 [api] resolving provenance for metadata file
+#21 DONE 0.1s
+ Image observabilidad-fluentd-api Built 
+ Image observabilidad-fluentd-flask Built 
+ Container jaeger Running 
+ Container nginx_proxy Running 
+ Container locust Running 
+ Container flask_app Running 
+ Container fluentd Running 
+ Container prometheus Running 
+ Container fastapi_app Running 
+ Container otel-collector Running 
+ Image observabilidad-fluentd-flask Building 
+ Image observabilidad-fluentd-api Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 1.12kB 0.0s done
+#1 DONE 0.0s
+
+#2 [api internal] load build definition from Dockerfile
+#2 transferring dockerfile: 493B done
+#2 DONE 0.0s
+
+#3 [flask internal] load build definition from Dockerfile
+#3 transferring dockerfile: 425B done
+#3 DONE 0.0s
+
+#4 [flask internal] load metadata for docker.io/library/python:3.11-slim
+#4 ...
+
+#5 [auth] library/python:pull token for registry-1.docker.io
+#5 DONE 0.0s
+
+#4 [flask internal] load metadata for docker.io/library/python:3.11-slim
+#4 DONE 1.2s
+
+#6 [flask internal] load .dockerignore
+#6 transferring context: 2B done
+#6 DONE 0.0s
+
+#7 [api internal] load .dockerignore
+#7 transferring context: 2B done
+#7 DONE 0.0s
+
+#8 [api internal] load build context
+#8 transferring context: 164B done
+#8 DONE 0.0s
+
+#9 [flask 1/6] FROM docker.io/library/python:3.11-slim@sha256:bab1b7ef4b450c81002278d035eff85ebe394ae94df904f7a3ba14f7e16e487b
+#9 resolve docker.io/library/python:3.11-slim@sha256:bab1b7ef4b450c81002278d035eff85ebe394ae94df904f7a3ba14f7e16e487b 0.0s done
+#9 DONE 0.0s
+
+#10 [flask internal] load build context
+#10 transferring context: 5.97kB 0.0s done
+#10 DONE 0.0s
+
+#11 [api 4/6] COPY requirements.txt .
+#11 CACHED
+
+#12 [api 5/6] RUN pip install --no-cache-dir -r requirements.txt
+#12 CACHED
+
+#13 [api 6/6] COPY ./app ./app
+#13 CACHED
+
+#14 [flask 2/6] WORKDIR /code
+#14 CACHED
+
+#15 [flask 3/6] RUN apt-get update && apt-get install -y --no-install-recommends curl     && rm -rf /var/lib/apt/lists/*
+#15 CACHED
+
+#16 [flask 4/6] COPY requirements.txt .
+#16 DONE 0.0s
+
+#17 [api] exporting to image
+#17 exporting layers done
+#17 exporting manifest sha256:563a3a982d23688c6cb45e660be72e10d4cf6c6f900aa1e25da843e1a46addb5 done
+#17 exporting config sha256:f6c36e2eb1a26046afd7d07c1bd37215cbee21b0a61b2d733f79d82a2e36aca7 done
+#17 exporting attestation manifest sha256:11e455b6147519cc55517687d8384f00644f97e1bab672ea38e453f6e353ed08 0.0s done
+#17 exporting manifest list sha256:d1938a520fb3f20298389a69c706cea83001061a5eefbdedb8421e0f69d10552
+#17 exporting manifest list sha256:d1938a520fb3f20298389a69c706cea83001061a5eefbdedb8421e0f69d10552 0.0s done
+#17 naming to docker.io/library/observabilidad-fluentd-api:latest done
+#17 unpacking to docker.io/library/observabilidad-fluentd-api:latest 0.0s done
+#17 DONE 0.1s
+
+#18 [api] resolving provenance for metadata file
+#18 DONE 0.0s
+
+#19 [flask 5/6] RUN pip install --no-cache-dir -r requirements.txt
+#19 1.813 Collecting flask>=3.0.0 (from -r requirements.txt (line 1))
+#19 2.164   Downloading flask-3.1.3-py3-none-any.whl.metadata (3.2 kB)
+#19 2.207 Collecting opentelemetry-api>=1.25.0 (from -r requirements.txt (line 2))
+#19 2.218   Downloading opentelemetry_api-1.45.0-py3-none-any.whl.metadata (1.4 kB)
+#19 2.261 Collecting opentelemetry-sdk>=1.25.0 (from -r requirements.txt (line 3))
+#19 2.273   Downloading opentelemetry_sdk-1.45.0-py3-none-any.whl.metadata (1.6 kB)
+#19 2.311 Collecting opentelemetry-exporter-otlp-proto-grpc>=1.25.0 (from -r requirements.txt (line 4))
+#19 2.323   Downloading opentelemetry_exporter_otlp_proto_grpc-1.45.0-py3-none-any.whl.metadata (2.6 kB)
+#19 2.365 Collecting opentelemetry-instrumentation-flask>=0.46b0 (from -r requirements.txt (line 5))
+#19 2.377   Downloading opentelemetry_instrumentation_flask-0.66b0-py3-none-any.whl.metadata (2.2 kB)
+#19 2.413 Collecting blinker>=1.9.0 (from flask>=3.0.0->-r requirements.txt (line 1))
+#19 2.429   Downloading blinker-1.9.0-py3-none-any.whl.metadata (1.6 kB)
+#19 2.467 Collecting click>=8.1.3 (from flask>=3.0.0->-r requirements.txt (line 1))
+#19 2.479   Downloading click-8.5.0-py3-none-any.whl.metadata (2.6 kB)
+#19 2.503 Collecting itsdangerous>=2.2.0 (from flask>=3.0.0->-r requirements.txt (line 1))
+#19 2.515   Downloading itsdangerous-2.2.0-py3-none-any.whl.metadata (1.9 kB)
+#19 2.545 Collecting jinja2>=3.1.2 (from flask>=3.0.0->-r requirements.txt (line 1))
+#19 2.557   Downloading jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+#19 2.640 Collecting markupsafe>=2.1.1 (from flask>=3.0.0->-r requirements.txt (line 1))
+#19 2.658   Downloading markupsafe-3.0.3-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.7 kB)
+#19 2.710 Collecting werkzeug>=3.1.0 (from flask>=3.0.0->-r requirements.txt (line 1))
+#19 2.727   Downloading werkzeug-3.1.9-py3-none-any.whl.metadata (4.1 kB)
+#19 2.770 Collecting typing-extensions>=4.5.0 (from opentelemetry-api>=1.25.0->-r requirements.txt (line 2))
+#19 2.781   Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+#19 2.830 Collecting opentelemetry-semantic-conventions==0.66b0 (from opentelemetry-sdk>=1.25.0->-r requirements.txt (line 3))
+#19 2.842   Downloading opentelemetry_semantic_conventions-0.66b0-py3-none-any.whl.metadata (2.4 kB)
+#19 2.890 Collecting googleapis-common-protos~=1.57 (from opentelemetry-exporter-otlp-proto-grpc>=1.25.0->-r requirements.txt (line 4))
+#19 2.902   Downloading googleapis_common_protos-1.75.5-py3-none-any.whl.metadata (8.5 kB)
+#19 3.688 Collecting grpcio<2.0.0,>=1.63.2 (from opentelemetry-exporter-otlp-proto-grpc>=1.25.0->-r requirements.txt (line 4))
+#19 3.699   Downloading grpcio-1.84.0-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (3.8 kB)
+#19 3.724 Collecting opentelemetry-exporter-otlp-common==0.66b0 (from opentelemetry-exporter-otlp-proto-grpc>=1.25.0->-r requirements.txt (line 4))
+#19 3.735   Downloading opentelemetry_exporter_otlp_common-0.66b0-py3-none-any.whl.metadata (1.9 kB)
+#19 3.763 Collecting opentelemetry-exporter-otlp-proto-common==1.45.0 (from opentelemetry-exporter-otlp-proto-grpc>=1.25.0->-r requirements.txt (line 4))
+#19 3.773   Downloading opentelemetry_exporter_otlp_proto_common-1.45.0-py3-none-any.whl.metadata (1.8 kB)
+#19 3.813 Collecting opentelemetry-proto==1.45.0 (from opentelemetry-exporter-otlp-proto-grpc>=1.25.0->-r requirements.txt (line 4))
+#19 3.824   Downloading opentelemetry_proto-1.45.0-py3-none-any.whl.metadata (2.3 kB)
+#19 4.076 Collecting protobuf<8.0,>=5.0 (from opentelemetry-proto==1.45.0->opentelemetry-exporter-otlp-proto-grpc>=1.25.0->-r requirements.txt (line 4))
+#19 4.087   Downloading protobuf-7.36.2-cp310-abi3-manylinux2014_x86_64.whl.metadata (595 bytes)
+#19 4.144 Collecting opentelemetry-instrumentation-wsgi==0.66b0 (from opentelemetry-instrumentation-flask>=0.46b0->-r requirements.txt (line 5))
+#19 4.155   Downloading opentelemetry_instrumentation_wsgi-0.66b0-py3-none-any.whl.metadata (2.1 kB)
+#19 4.193 Collecting opentelemetry-instrumentation==0.66b0 (from opentelemetry-instrumentation-flask>=0.46b0->-r requirements.txt (line 5))
+#19 4.204   Downloading opentelemetry_instrumentation-0.66b0-py3-none-any.whl.metadata (7.2 kB)
+#19 4.242 Collecting opentelemetry-util-http==0.66b0 (from opentelemetry-instrumentation-flask>=0.46b0->-r requirements.txt (line 5))
+#19 4.253   Downloading opentelemetry_util_http-0.66b0-py3-none-any.whl.metadata (2.6 kB)
+#19 4.256 Requirement already satisfied: packaging>=21.0 in /usr/local/lib/python3.11/site-packages (from opentelemetry-instrumentation-flask>=0.46b0->-r requirements.txt (line 5)) (26.3)
+#19 4.775 Collecting wrapt<3.0.0,>=1.0.0 (from opentelemetry-instrumentation==0.66b0->opentelemetry-instrumentation-flask>=0.46b0->-r requirements.txt (line 5))
+#19 4.786   Downloading wrapt-2.5.0-cp311-cp311-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (7.6 kB)
+#19 4.878 Downloading flask-3.1.3-py3-none-any.whl (103 kB)
+#19 4.891    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 103.4/103.4 kB 9.8 MB/s eta 0:00:00
+#19 4.902 Downloading opentelemetry_api-1.45.0-py3-none-any.whl (60 kB)
+#19 4.908    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 60.0/60.0 kB 15.4 MB/s eta 0:00:00
+#19 4.920 Downloading opentelemetry_sdk-1.45.0-py3-none-any.whl (140 kB)
+#19 4.932    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 140.1/140.1 kB 13.4 MB/s eta 0:00:00
+#19 4.943 Downloading opentelemetry_semantic_conventions-0.66b0-py3-none-any.whl (206 kB)
+#19 4.952    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 206.3/206.3 kB 29.2 MB/s eta 0:00:00
+#19 4.964 Downloading opentelemetry_exporter_otlp_proto_grpc-1.45.0-py3-none-any.whl (19 kB)
+#19 4.975 Downloading opentelemetry_exporter_otlp_common-0.66b0-py3-none-any.whl (12 kB)
+#19 4.986 Downloading opentelemetry_exporter_otlp_proto_common-1.45.0-py3-none-any.whl (15 kB)
+#19 4.996 Downloading opentelemetry_proto-1.45.0-py3-none-any.whl (72 kB)
+#19 5.002    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 72.5/72.5 kB 20.5 MB/s eta 0:00:00
+#19 5.014 Downloading opentelemetry_instrumentation_flask-0.66b0-py3-none-any.whl (14 kB)
+#19 5.024 Downloading opentelemetry_instrumentation-0.66b0-py3-none-any.whl (36 kB)
+#19 5.037 Downloading opentelemetry_instrumentation_wsgi-0.66b0-py3-none-any.whl (13 kB)
+#19 5.048 Downloading opentelemetry_util_http-0.66b0-py3-none-any.whl (8.4 kB)
+#19 5.059 Downloading blinker-1.9.0-py3-none-any.whl (8.5 kB)
+#19 5.069 Downloading click-8.5.0-py3-none-any.whl (125 kB)
+#19 5.079    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 125.3/125.3 kB 14.7 MB/s eta 0:00:00
+#19 5.090 Downloading googleapis_common_protos-1.75.5-py3-none-any.whl (307 kB)
+#19 5.104    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 307.7/307.7 kB 27.3 MB/s eta 0:00:00
+#19 5.116 Downloading grpcio-1.84.0-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (7.2 MB)
+#19 5.562    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 7.2/7.2 MB 16.2 MB/s eta 0:00:00
+#19 5.573 Downloading itsdangerous-2.2.0-py3-none-any.whl (16 kB)
+#19 5.585 Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)
+#19 5.597    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 134.9/134.9 kB 13.1 MB/s eta 0:00:00
+#19 5.608 Downloading markupsafe-3.0.3-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (22 kB)
+#19 5.620 Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+#19 5.625    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 45.6/45.6 kB 15.1 MB/s eta 0:00:00
+#19 5.635 Downloading werkzeug-3.1.9-py3-none-any.whl (228 kB)
+#19 5.655    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 228.7/228.7 kB 13.3 MB/s eta 0:00:00
+#19 5.668 Downloading protobuf-7.36.2-cp310-abi3-manylinux2014_x86_64.whl (343 kB)
+#19 5.698    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 343.2/343.2 kB 12.2 MB/s eta 0:00:00
+#19 5.710 Downloading wrapt-2.5.0-cp311-cp311-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (239 kB)
+#19 5.719    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 239.8/239.8 kB 38.3 MB/s eta 0:00:00
+#19 5.820 Installing collected packages: wrapt, typing-extensions, protobuf, opentelemetry-util-http, markupsafe, itsdangerous, click, blinker, werkzeug, opentelemetry-proto, opentelemetry-api, jinja2, grpcio, googleapis-common-protos, opentelemetry-semantic-conventions, opentelemetry-exporter-otlp-proto-common, flask, opentelemetry-sdk, opentelemetry-instrumentation, opentelemetry-instrumentation-wsgi, opentelemetry-exporter-otlp-common, opentelemetry-instrumentation-flask, opentelemetry-exporter-otlp-proto-grpc
+#19 6.939 Successfully installed blinker-1.9.0 click-8.5.0 flask-3.1.3 googleapis-common-protos-1.75.5 grpcio-1.84.0 itsdangerous-2.2.0 jinja2-3.1.6 markupsafe-3.0.3 opentelemetry-api-1.45.0 opentelemetry-exporter-otlp-common-0.66b0 opentelemetry-exporter-otlp-proto-common-1.45.0 opentelemetry-exporter-otlp-proto-grpc-1.45.0 opentelemetry-instrumentation-0.66b0 opentelemetry-instrumentation-flask-0.66b0 opentelemetry-instrumentation-wsgi-0.66b0 opentelemetry-proto-1.45.0 opentelemetry-sdk-1.45.0 opentelemetry-semantic-conventions-0.66b0 opentelemetry-util-http-0.66b0 protobuf-7.36.2 typing-extensions-4.16.0 werkzeug-3.1.9 wrapt-2.5.0
+#19 6.939 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+#19 7.039 
+#19 7.039 [notice] A new release of pip is available: 24.0 -> 26.2.1
+#19 7.039 [notice] To update, run: pip install --upgrade pip
+#19 DONE 7.7s
+
+#20 [flask 6/6] COPY . .
+#20 DONE 0.1s
+
+#21 [flask] exporting to image
+#21 exporting layers
+#21 exporting layers 1.7s done
+#21 exporting manifest sha256:3a4fbe28ab1070b8f5dd4c4329e63d5ed943adc7c9312881adb7b30e24b292e4 0.0s done
+#21 exporting config sha256:b1c49e8e2a5ceaf2ca4a429c73987507c7e27112dcccf884f4b836e6fa3c191a 0.0s done
+#21 exporting attestation manifest sha256:0ad353d843df4846bcc8793590fd1bbed741860ed25e71c9a666d5a3a22ad055 0.0s done
+#21 exporting manifest list sha256:8a93a1a1d2754ea47b3f75325c0c6d9e12a41be64bf9d75f0968e83f634df11c
+#21 exporting manifest list sha256:8a93a1a1d2754ea47b3f75325c0c6d9e12a41be64bf9d75f0968e83f634df11c 0.0s done
+#21 naming to docker.io/library/observabilidad-fluentd-flask:latest done
+#21 unpacking to docker.io/library/observabilidad-fluentd-flask:latest
+#21 unpacking to docker.io/library/observabilidad-fluentd-flask:latest 0.5s done
+#21 DONE 2.4s
+
+#22 [flask] resolving provenance for metadata file
+#22 DONE 0.0s
+ Image observabilidad-fluentd-api Built 
+ Image observabilidad-fluentd-flask Built 
+ Network observabilidad-fluentd_default Creating 
+ Network observabilidad-fluentd_default Creating 
+ Network observabilidad-fluentd_default Created 
+ Network observabilidad-fluentd_default Created 
+ Container fluentd Creating 
+ Container jaeger Creating 
+ Container otel-collector Creating 
+ Container prometheus Creating 
+ Container flask_app Creating 
+ Container prometheus Created 
+ Container otel-collector Created 
+ Container fluentd Created 
+ Container fastapi_app Creating 
+ Container flask_app Created 
+ Container jaeger Created 
+ Container fastapi_app Created 
+ Container nginx_proxy Creating 
+ Container nginx_proxy Created 
+ Container locust Creating 
+ Container locust Created 
+ Container prometheus Starting 
+ Container otel-collector Starting 
+ Container fluentd Starting 
+ Container jaeger Starting 
+ Container flask_app Starting 
+ Container prometheus Started 
+ Container otel-collector Started 
+ Container fluentd Started 
+ Container fastapi_app Starting 
+ Container jaeger Started 
+ Container flask_app Started 
+ Container fastapi_app Started 
+ Container nginx_proxy Starting 
+ Container nginx_proxy Started 
+ Container locust Starting 
+ Container locust Started 
+ Image observabilidad-fluentd-api Building 
+ Image observabilidad-fluentd-flask Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 1.12kB 0.0s done
+#1 DONE 0.0s
+
+#2 [api internal] load build definition from Dockerfile
+#2 transferring dockerfile: 493B 0.0s done
+#2 DONE 0.0s
+
+#3 [flask internal] load build definition from Dockerfile
+#3 transferring dockerfile: 425B 0.0s done
+#3 DONE 0.0s
+
+#4 [auth] library/python:pull token for registry-1.docker.io
+#4 DONE 0.0s
+
+#5 [api internal] load metadata for docker.io/library/python:3.11-slim
+#5 DONE 1.1s
+
+#6 [api internal] load .dockerignore
+#6 transferring context: 2B done
+#6 DONE 0.0s
+
+#7 [flask internal] load .dockerignore
+#7 transferring context: 2B done
+#7 DONE 0.0s
+
+#8 [flask internal] load build context
+#8 transferring context: 126B done
+#8 DONE 0.0s
+
+#9 [api internal] load build context
+#9 transferring context: 164B done
+#9 DONE 0.0s
+
+#10 [flask 1/6] FROM docker.io/library/python:3.11-slim@sha256:bab1b7ef4b450c81002278d035eff85ebe394ae94df904f7a3ba14f7e16e487b
+#10 resolve docker.io/library/python:3.11-slim@sha256:bab1b7ef4b450c81002278d035eff85ebe394ae94df904f7a3ba14f7e16e487b 0.0s done
+#10 DONE 0.0s
+
+#11 [api 5/6] RUN pip install --no-cache-dir -r requirements.txt
+#11 CACHED
+
+#12 [api 4/6] COPY requirements.txt .
+#12 CACHED
+
+#13 [api 6/6] COPY ./app ./app
+#13 CACHED
+
+#14 [flask 4/6] COPY requirements.txt .
+#14 CACHED
+
+#15 [api 2/6] WORKDIR /code
+#15 CACHED
+
+#16 [flask 5/6] RUN pip install --no-cache-dir -r requirements.txt
+#16 CACHED
+
+#17 [api 3/6] RUN apt-get update && apt-get install -y --no-install-recommends curl     && rm -rf /var/lib/apt/lists/*
+#17 CACHED
+
+#18 [flask 6/6] COPY . .
+#18 CACHED
+
+#19 [api] exporting to image
+#19 exporting layers done
+#19 exporting manifest sha256:563a3a982d23688c6cb45e660be72e10d4cf6c6f900aa1e25da843e1a46addb5 done
+#19 exporting config sha256:f6c36e2eb1a26046afd7d07c1bd37215cbee21b0a61b2d733f79d82a2e36aca7 done
+#19 exporting attestation manifest sha256:383dee4928b50915b584404e32eed59333f324148cb8624aa10020d633b0ab97 0.0s done
+#19 exporting manifest list sha256:656107c82941b37b144da458646d032784dd05d9e77cbf8c01b84e27b145b77b
+#19 exporting manifest list sha256:656107c82941b37b144da458646d032784dd05d9e77cbf8c01b84e27b145b77b 0.0s done
+#19 naming to docker.io/library/observabilidad-fluentd-api:latest done
+#19 unpacking to docker.io/library/observabilidad-fluentd-api:latest done
+#19 DONE 0.1s
+
+#20 [flask] exporting to image
+#20 exporting layers done
+#20 exporting manifest sha256:3a4fbe28ab1070b8f5dd4c4329e63d5ed943adc7c9312881adb7b30e24b292e4 done
+#20 exporting config sha256:b1c49e8e2a5ceaf2ca4a429c73987507c7e27112dcccf884f4b836e6fa3c191a done
+#20 exporting attestation manifest sha256:e2be7c38c175feaebd96d332a9a50a668f0ece7bc91ad208df369c35d528b4a2 0.0s done
+#20 exporting manifest list sha256:1dd23c23390593a2331f395daedc8b68007bcb43a9e03adc78ad9d81eb145493 0.0s done
+#20 naming to docker.io/library/observabilidad-fluentd-flask:latest done
+#20 unpacking to docker.io/library/observabilidad-fluentd-flask:latest done
+#20 DONE 0.1s
+
+#21 [api] resolving provenance for metadata file
+#21 DONE 0.0s
+
+#22 [flask] resolving provenance for metadata file
+#22 DONE 0.0s
+ Image observabilidad-fluentd-api Built 
+ Image observabilidad-fluentd-flask Built 
+ Network observabilidad-fluentd_default Creating 
+ Network observabilidad-fluentd_default Creating 
+ Network observabilidad-fluentd_default Created 
+ Network observabilidad-fluentd_default Created 
+ Container fluentd Creating 
+ Container prometheus Creating 
+ Container otel-collector Creating 
+ Container jaeger Creating 
+ Container flask_app Creating 
+ Container prometheus Created 
+ Container flask_app Created 
+ Container otel-collector Created 
+ Container jaeger Created 
+ Container fluentd Created 
+ Container fastapi_app Creating 
+ Container fastapi_app Created 
+ Container nginx_proxy Creating 
+ Container nginx_proxy Created 
+ Container locust Creating 
+ Container locust Created 
+ Container fluentd Starting 
+ Container jaeger Starting 
+ Container otel-collector Starting 
+ Container prometheus Starting 
+ Container flask_app Starting 
+ Container fluentd Started 
+ Container fastapi_app Starting 
+ Container jaeger Started 
+ Container otel-collector Started 
+ Container prometheus Started 
+ Container flask_app Started 
+ Container fastapi_app Started 
+ Container nginx_proxy Starting 
+ Container nginx_proxy Started 
+ Container locust Starting 
+ Container locust Started 
+ Image observabilidad-fluentd-flask Building 
+ Image observabilidad-fluentd-api Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 1.12kB 0.0s done
+#1 DONE 0.0s
+
+#2 [api internal] load build definition from Dockerfile
+#2 transferring dockerfile: 493B done
+#2 DONE 0.0s
+
+#3 [flask internal] load build definition from Dockerfile
+#3 transferring dockerfile: 425B done
+#3 DONE 0.0s
+
+#4 [auth] library/python:pull token for registry-1.docker.io
+#4 DONE 0.0s
+
+#5 [flask internal] load metadata for docker.io/library/python:3.11-slim
+#5 DONE 0.9s
+
+#6 [api internal] load .dockerignore
+#6 transferring context: 2B done
+#6 DONE 0.0s
+
+#7 [flask internal] load .dockerignore
+#7 transferring context: 2B done
+#7 DONE 0.0s
+
+#8 [api internal] load build context
+#8 transferring context: 164B done
+#8 DONE 0.0s
+
+#9 [flask internal] load build context
+#9 transferring context: 5.97kB done
+#9 DONE 0.0s
+
+#10 [flask 1/6] FROM docker.io/library/python:3.11-slim@sha256:bab1b7ef4b450c81002278d035eff85ebe394ae94df904f7a3ba14f7e16e487b
+#10 resolve docker.io/library/python:3.11-slim@sha256:bab1b7ef4b450c81002278d035eff85ebe394ae94df904f7a3ba14f7e16e487b 0.0s done
+#10 DONE 0.0s
+
+#11 [flask 5/6] RUN pip install --no-cache-dir -r requirements.txt
+#11 CACHED
+
+#12 [flask 4/6] COPY requirements.txt .
+#12 CACHED
+
+#13 [flask 2/6] WORKDIR /code
+#13 CACHED
+
+#14 [api 5/6] RUN pip install --no-cache-dir -r requirements.txt
+#14 CACHED
+
+#15 [api 4/6] COPY requirements.txt .
+#15 CACHED
+
+#16 [flask 3/6] RUN apt-get update && apt-get install -y --no-install-recommends curl     && rm -rf /var/lib/apt/lists/*
+#16 CACHED
+
+#17 [flask 6/6] COPY . .
+#17 CACHED
+
+#18 [api 6/6] COPY ./app ./app
+#18 CACHED
+
+#19 [flask] exporting to image
+#19 exporting layers done
+#19 exporting manifest sha256:3a4fbe28ab1070b8f5dd4c4329e63d5ed943adc7c9312881adb7b30e24b292e4 done
+#19 exporting config sha256:b1c49e8e2a5ceaf2ca4a429c73987507c7e27112dcccf884f4b836e6fa3c191a done
+#19 exporting attestation manifest sha256:d74f276b194e9f7e9479521c7d0728580960c50232ef192fbfb4c306582efc6b 0.0s done
+#19 exporting manifest list sha256:e33276d8bd9f484cf3874fd40422c12cf6baf69eb10020f2e69cb6b904e1d814
+#19 exporting manifest list sha256:e33276d8bd9f484cf3874fd40422c12cf6baf69eb10020f2e69cb6b904e1d814 0.0s done
+#19 naming to docker.io/library/observabilidad-fluentd-flask:latest done
+#19 unpacking to docker.io/library/observabilidad-fluentd-flask:latest done
+#19 DONE 0.1s
+
+#20 [api] exporting to image
+#20 exporting layers done
+#20 exporting manifest sha256:563a3a982d23688c6cb45e660be72e10d4cf6c6f900aa1e25da843e1a46addb5 done
+#20 exporting config sha256:f6c36e2eb1a26046afd7d07c1bd37215cbee21b0a61b2d733f79d82a2e36aca7 done
+#20 exporting attestation manifest sha256:d5beef57506d13984998ff9af5d360f1928d1cce76e8922877c262ea88207951 0.0s done
+#20 exporting manifest list sha256:a43d5d162a4dc255725ef97a3abc5cd345081988343f4de18511c4d8bd67e787 0.0s done
+#20 naming to docker.io/library/observabilidad-fluentd-api:latest done
+#20 unpacking to docker.io/library/observabilidad-fluentd-api:latest done
+#20 DONE 0.1s
+
+#21 [flask] resolving provenance for metadata file
+#21 DONE 0.0s
+
+#22 [api] resolving provenance for metadata file
+#22 DONE 0.0s
+ Image observabilidad-fluentd-api Built 
+ Image observabilidad-fluentd-flask Built 
+ Container nginx_proxy Running 
+ Container locust Running 
+ Container jaeger Running 
+ Container fastapi_app Running 
+ Container prometheus Running 
+ Container fluentd Running 
+ Container otel-collector Running 
+ Container flask_app Running 
+ Image observabilidad-fluentd-api Building 
+ Image observabilidad-fluentd-flask Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 1.12kB 0.0s done
+#1 DONE 0.0s
+
+#2 [api internal] load build definition from Dockerfile
+#2 transferring dockerfile: 493B done
+#2 DONE 0.0s
+
+#3 [flask internal] load build definition from Dockerfile
+#3 transferring dockerfile: 425B done
+#3 DONE 0.0s
+
+#4 [flask internal] load metadata for docker.io/library/python:3.11-slim
+#4 DONE 0.4s
+
+#5 [api internal] load .dockerignore
+#5 transferring context: 2B done
+#5 DONE 0.0s
+
+#6 [flask internal] load .dockerignore
+#6 transferring context: 2B done
+#6 DONE 0.0s
+
+#7 [api internal] load build context
+#7 transferring context: 164B done
+#7 DONE 0.0s
+
+#8 [flask internal] load build context
+#8 transferring context: 126B done
+#8 DONE 0.0s
+
+#9 [api 1/6] FROM docker.io/library/python:3.11-slim@sha256:bab1b7ef4b450c81002278d035eff85ebe394ae94df904f7a3ba14f7e16e487b
+#9 resolve docker.io/library/python:3.11-slim@sha256:bab1b7ef4b450c81002278d035eff85ebe394ae94df904f7a3ba14f7e16e487b 0.0s done
+#9 DONE 0.0s
+
+#10 [api 4/6] COPY requirements.txt .
+#10 CACHED
+
+#11 [api 5/6] RUN pip install --no-cache-dir -r requirements.txt
+#11 CACHED
+
+#12 [api 6/6] COPY ./app ./app
+#12 CACHED
+
+#13 [flask 5/6] RUN pip install --no-cache-dir -r requirements.txt
+#13 CACHED
+
+#14 [api 2/6] WORKDIR /code
+#14 CACHED
+
+#15 [flask 4/6] COPY requirements.txt .
+#15 CACHED
+
+#16 [api 3/6] RUN apt-get update && apt-get install -y --no-install-recommends curl     && rm -rf /var/lib/apt/lists/*
+#16 CACHED
+
+#17 [flask 6/6] COPY . .
+#17 CACHED
+
+#18 [api] exporting to image
+#18 exporting layers done
+#18 exporting manifest sha256:563a3a982d23688c6cb45e660be72e10d4cf6c6f900aa1e25da843e1a46addb5 done
+#18 exporting config sha256:f6c36e2eb1a26046afd7d07c1bd37215cbee21b0a61b2d733f79d82a2e36aca7 done
+#18 exporting attestation manifest sha256:05d2678c1ad1ef4e6bf19199575a21ccf1f5793289b1c3ab646050d284b0b327 0.0s done
+#18 exporting manifest list sha256:27ed5cbb2b511bac71311c8a24bc6673454425d8dd8ca3db2e8cfaea6ba75804
+#18 exporting manifest list sha256:27ed5cbb2b511bac71311c8a24bc6673454425d8dd8ca3db2e8cfaea6ba75804 0.0s done
+#18 naming to docker.io/library/observabilidad-fluentd-api:latest done
+#18 unpacking to docker.io/library/observabilidad-fluentd-api:latest done
+#18 DONE 0.1s
+
+#19 [flask] exporting to image
+#19 exporting layers done
+#19 exporting manifest sha256:3a4fbe28ab1070b8f5dd4c4329e63d5ed943adc7c9312881adb7b30e24b292e4 done
+#19 exporting config sha256:b1c49e8e2a5ceaf2ca4a429c73987507c7e27112dcccf884f4b836e6fa3c191a done
+#19 exporting attestation manifest sha256:9724a3bfc7c6b9d7a54921d195f326a37b21655556c996cbf58a9559754779ef 0.0s done
+#19 exporting manifest list sha256:63bb8f690faf0aae83c304935241afd9790759e8ed428c318a0a09263cd644cd 0.0s done
+#19 naming to docker.io/library/observabilidad-fluentd-flask:latest done
+#19 unpacking to docker.io/library/observabilidad-fluentd-flask:latest done
+#19 DONE 0.1s
+
+#20 [api] resolving provenance for metadata file
+#20 DONE 0.0s
+
+#21 [flask] resolving provenance for metadata file
+#21 DONE 0.0s
+ Image observabilidad-fluentd-api Built 
+ Image observabilidad-fluentd-flask Built 
+ Network observabilidad-fluentd_default Creating 
+ Network observabilidad-fluentd_default Creating 
+ Network observabilidad-fluentd_default Created 
+ Network observabilidad-fluentd_default Created 
+ Container flask_app Creating 
+ Container jaeger Creating 
+ Container prometheus Creating 
+ Container otel-collector Creating 
+ Container fluentd Creating 
+ Container fluentd Created 
+ Container fastapi_app Creating 
+ Container prometheus Created 
+ Container flask_app Created 
+ Container otel-collector Created 
+ Container jaeger Created 
+ Container fastapi_app Created 
+ Container nginx_proxy Creating 
+ Container nginx_proxy Created 
+ Container locust Creating 
+ Container locust Created 
+ Container fluentd Starting 
+ Container jaeger Starting 
+ Container prometheus Starting 
+ Container otel-collector Starting 
+ Container flask_app Starting 
+ Container fluentd Started 
+ Container fastapi_app Starting 
+ Container jaeger Started 
+ Container prometheus Started 
+ Container otel-collector Started 
+ Container flask_app Started 
+ Container fastapi_app Started 
+ Container nginx_proxy Starting 
+ Container nginx_proxy Started 
+ Container locust Starting 
+ Container locust Started 
+ Image observabilidad-fluentd-api Building 
+ Image observabilidad-fluentd-flask Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 1.12kB 0.0s done
+#1 DONE 0.0s
+
+#2 [api internal] load build definition from Dockerfile
+#2 transferring dockerfile: 493B done
+#2 DONE 0.0s
+
+#3 [flask internal] load build definition from Dockerfile
+#3 transferring dockerfile: 425B done
+#3 DONE 0.0s
+
+#4 [flask internal] load metadata for docker.io/library/python:3.11-slim
+#4 ...
+
+#5 [auth] library/python:pull token for registry-1.docker.io
+#5 DONE 0.0s
+
+#4 [flask internal] load metadata for docker.io/library/python:3.11-slim
+#4 DONE 2.2s
+
+#6 [flask internal] load .dockerignore
+#6 transferring context: 2B done
+#6 DONE 0.0s
+
+#7 [api internal] load .dockerignore
+#7 transferring context: 2B done
+#7 DONE 0.0s
+
+#8 [api internal] load build context
+#8 transferring context: 164B done
+#8 DONE 0.0s
+
+#9 [flask internal] load build context
+#9 transferring context: 126B done
+#9 DONE 0.0s
+
+#10 [flask 1/6] FROM docker.io/library/python:3.11-slim@sha256:0dd364ba7e10242f07755449e3a3d0e35f9efd987952737b90def6709ab0c5ce
+#10 resolve docker.io/library/python:3.11-slim@sha256:0dd364ba7e10242f07755449e3a3d0e35f9efd987952737b90def6709ab0c5ce 0.0s done
+#10 sha256:496c1a902b3a93cea3e54b90b79dbcaa0e58ad90c3fe9dd0a43c9557dc47f17d 250B / 250B 0.1s done
+#10 sha256:496c1a902b3a93cea3e54b90b79dbcaa0e58ad90c3fe9dd0a43c9557dc47f17d 250B / 250B 0.1s done
+#10 sha256:759a7f30c31818dda4c97b407b24d93da479c306568d185ced927e1a749164f1 0B / 14.46MB 0.3s
+#10 sha256:0f752a1982d6f819fc2c9e78ac1514c63f2f2e1dec7885ffd4cb6809ba4a26ca 0B / 1.29MB 0.2s
+#10 sha256:ecc510c1e359bdc007b39802570bb7e4dec7d6ebccf357c3201a74299113e05e 0B / 29.84MB 0.2s
+#10 sha256:759a7f30c31818dda4c97b407b24d93da479c306568d185ced927e1a749164f1 2.10MB / 14.46MB 0.5s
+#10 sha256:759a7f30c31818dda4c97b407b24d93da479c306568d185ced927e1a749164f1 4.19MB / 14.46MB 0.6s
+#10 sha256:759a7f30c31818dda4c97b407b24d93da479c306568d185ced927e1a749164f1 6.29MB / 14.46MB 0.8s
+#10 sha256:759a7f30c31818dda4c97b407b24d93da479c306568d185ced927e1a749164f1 9.44MB / 14.46MB 0.9s
+#10 sha256:0f752a1982d6f819fc2c9e78ac1514c63f2f2e1dec7885ffd4cb6809ba4a26ca 1.29MB / 1.29MB 0.8s done
+#10 sha256:759a7f30c31818dda4c97b407b24d93da479c306568d185ced927e1a749164f1 12.58MB / 14.46MB 1.1s
+#10 sha256:ecc510c1e359bdc007b39802570bb7e4dec7d6ebccf357c3201a74299113e05e 2.10MB / 29.84MB 0.9s
+#10 sha256:759a7f30c31818dda4c97b407b24d93da479c306568d185ced927e1a749164f1 14.46MB / 14.46MB 1.2s done
+#10 sha256:ecc510c1e359bdc007b39802570bb7e4dec7d6ebccf357c3201a74299113e05e 4.19MB / 29.84MB 1.1s
+#10 sha256:759a7f30c31818dda4c97b407b24d93da479c306568d185ced927e1a749164f1 14.46MB / 14.46MB 1.2s done
+#10 sha256:ecc510c1e359bdc007b39802570bb7e4dec7d6ebccf357c3201a74299113e05e 6.29MB / 29.84MB 1.2s
+#10 sha256:ecc510c1e359bdc007b39802570bb7e4dec7d6ebccf357c3201a74299113e05e 8.39MB / 29.84MB 1.4s
+#10 sha256:ecc510c1e359bdc007b39802570bb7e4dec7d6ebccf357c3201a74299113e05e 10.49MB / 29.84MB 1.5s
+#10 sha256:ecc510c1e359bdc007b39802570bb7e4dec7d6ebccf357c3201a74299113e05e 12.58MB / 29.84MB 1.7s
+#10 sha256:ecc510c1e359bdc007b39802570bb7e4dec7d6ebccf357c3201a74299113e05e 17.83MB / 29.84MB 1.8s
+#10 sha256:ecc510c1e359bdc007b39802570bb7e4dec7d6ebccf357c3201a74299113e05e 20.97MB / 29.84MB 2.1s
+#10 sha256:ecc510c1e359bdc007b39802570bb7e4dec7d6ebccf357c3201a74299113e05e 23.07MB / 29.84MB 2.3s
+#10 sha256:ecc510c1e359bdc007b39802570bb7e4dec7d6ebccf357c3201a74299113e05e 25.17MB / 29.84MB 2.4s
+#10 sha256:ecc510c1e359bdc007b39802570bb7e4dec7d6ebccf357c3201a74299113e05e 29.84MB / 29.84MB 2.6s
+#10 sha256:ecc510c1e359bdc007b39802570bb7e4dec7d6ebccf357c3201a74299113e05e 29.84MB / 29.84MB 2.7s done
+#10 sha256:ecc510c1e359bdc007b39802570bb7e4dec7d6ebccf357c3201a74299113e05e 29.84MB / 29.84MB 2.7s done
+#10 extracting sha256:ecc510c1e359bdc007b39802570bb7e4dec7d6ebccf357c3201a74299113e05e
+#10 extracting sha256:ecc510c1e359bdc007b39802570bb7e4dec7d6ebccf357c3201a74299113e05e 0.6s done
+#10 extracting sha256:ecc510c1e359bdc007b39802570bb7e4dec7d6ebccf357c3201a74299113e05e 0.6s done
+#10 extracting sha256:0f752a1982d6f819fc2c9e78ac1514c63f2f2e1dec7885ffd4cb6809ba4a26ca 0.1s done
+#10 extracting sha256:759a7f30c31818dda4c97b407b24d93da479c306568d185ced927e1a749164f1
+#10 extracting sha256:759a7f30c31818dda4c97b407b24d93da479c306568d185ced927e1a749164f1 0.4s done
+#10 extracting sha256:759a7f30c31818dda4c97b407b24d93da479c306568d185ced927e1a749164f1 0.4s done
+#10 extracting sha256:496c1a902b3a93cea3e54b90b79dbcaa0e58ad90c3fe9dd0a43c9557dc47f17d 0.0s done
+#10 DONE 3.9s
+
+#11 [flask 2/6] WORKDIR /code
+#11 DONE 0.8s
+
+#12 [api 3/6] RUN apt-get update && apt-get install -y --no-install-recommends curl     && rm -rf /var/lib/apt/lists/*
+#12 0.358 Hit:1 http://deb.debian.org/debian trixie InRelease
+#12 0.359 Get:2 http://deb.debian.org/debian trixie-updates InRelease [47.3 kB]
+#12 0.376 Get:3 http://deb.debian.org/debian-security trixie-security InRelease [43.4 kB]
+#12 0.391 Get:4 http://deb.debian.org/debian trixie/main amd64 Packages [9678 kB]
+#12 1.106 Get:5 http://deb.debian.org/debian trixie-updates/main amd64 Packages [4412 B]
+#12 1.118 Get:6 http://deb.debian.org/debian-security trixie-security/main amd64 Packages [264 kB]
+#12 1.697 Fetched 10.0 MB in 1s (6973 kB/s)
+#12 1.697 Reading package lists...
+#12 2.184 Reading package lists...
+#12 2.668 Building dependency tree...
+#12 2.815 Reading state information...
+#12 3.009 The following additional packages will be installed:
+#12 3.009   libbrotli1 libcom-err2 libcurl4t64 libgnutls30t64 libgssapi-krb5-2 libidn2-0
+#12 3.009   libk5crypto3 libkeyutils1 libkrb5-3 libkrb5support0 libldap2 libnghttp2-14
+#12 3.010   libnghttp3-9 libp11-kit0 libpsl5t64 librtmp1 libsasl2-2 libsasl2-modules-db
+#12 3.011   libssh2-1t64 libtasn1-6 libunistring5
+#12 3.013 Suggested packages:
+#12 3.013   gnutls-bin krb5-doc krb5-user
+#12 3.013 Recommended packages:
+#12 3.013   bash-completion krb5-locales libldap-common publicsuffix libsasl2-modules
+#12 3.128 The following NEW packages will be installed:
+#12 3.129   curl libbrotli1 libcom-err2 libcurl4t64 libgnutls30t64 libgssapi-krb5-2
+#12 3.129   libidn2-0 libk5crypto3 libkeyutils1 libkrb5-3 libkrb5support0 libldap2
+#12 3.130   libnghttp2-14 libnghttp3-9 libp11-kit0 libpsl5t64 librtmp1 libsasl2-2
+#12 3.130   libsasl2-modules-db libssh2-1t64 libtasn1-6 libunistring5
+#12 3.179 0 upgraded, 22 newly installed, 0 to remove and 0 not upgraded.
+#12 3.179 Need to get 4888 kB of archives.
+#12 3.179 After this operation, 14.7 MB of additional disk space will be used.
+#12 3.179 Get:1 http://deb.debian.org/debian trixie/main amd64 libbrotli1 amd64 1.1.0-2+b7 [307 kB]
+#12 3.221 Get:2 http://deb.debian.org/debian trixie/main amd64 libkrb5support0 amd64 1.21.3-5+deb13u1 [33.1 kB]
+#12 3.224 Get:3 http://deb.debian.org/debian trixie/main amd64 libcom-err2 amd64 1.47.2-3+b12 [25.0 kB]
+#12 3.230 Get:4 http://deb.debian.org/debian trixie/main amd64 libk5crypto3 amd64 1.21.3-5+deb13u1 [81.2 kB]
+#12 3.236 Get:5 http://deb.debian.org/debian trixie/main amd64 libkeyutils1 amd64 1.6.3-6 [9456 B]
+#12 3.236 Get:6 http://deb.debian.org/debian trixie/main amd64 libkrb5-3 amd64 1.21.3-5+deb13u1 [326 kB]
+#12 3.266 Get:7 http://deb.debian.org/debian trixie/main amd64 libgssapi-krb5-2 amd64 1.21.3-5+deb13u1 [138 kB]
+#12 3.278 Get:8 http://deb.debian.org/debian trixie/main amd64 libunistring5 amd64 1.3-2 [477 kB]
+#12 3.320 Get:9 http://deb.debian.org/debian trixie/main amd64 libidn2-0 amd64 2.3.8-2 [109 kB]
+#12 3.329 Get:10 http://deb.debian.org/debian trixie/main amd64 libsasl2-modules-db amd64 2.1.28+dfsg1-9 [19.8 kB]
+#12 3.330 Get:11 http://deb.debian.org/debian trixie/main amd64 libsasl2-2 amd64 2.1.28+dfsg1-9 [57.5 kB]
+#12 3.335 Get:12 http://deb.debian.org/debian trixie/main amd64 libldap2 amd64 2.6.10+dfsg-1 [194 kB]
+#12 3.351 Get:13 http://deb.debian.org/debian trixie/main amd64 libnghttp2-14 amd64 1.64.0-1.1+deb13u1 [76.2 kB]
+#12 3.357 Get:14 http://deb.debian.org/debian trixie/main amd64 libnghttp3-9 amd64 1.8.0-1 [67.7 kB]
+#12 3.361 Get:15 http://deb.debian.org/debian trixie/main amd64 libpsl5t64 amd64 0.21.2-1.1+b1 [57.2 kB]
+#12 3.363 Get:16 http://deb.debian.org/debian trixie/main amd64 libp11-kit0 amd64 0.25.5-3 [425 kB]
+#12 3.397 Get:17 http://deb.debian.org/debian trixie/main amd64 libtasn1-6 amd64 4.20.0-2+deb13u1 [50.1 kB]
+#12 3.401 Get:18 http://deb.debian.org/debian trixie/main amd64 libgnutls30t64 amd64 3.8.9-3+deb13u4 [1469 kB]
+#12 3.521 Get:19 http://deb.debian.org/debian trixie/main amd64 librtmp1 amd64 2.4+20151223.gitfa8646d.1-2+b5 [58.8 kB]
+#12 3.526 Get:20 http://deb.debian.org/debian trixie/main amd64 libssh2-1t64 amd64 1.11.1-1+deb13u2 [245 kB]
+#12 3.548 Get:21 http://deb.debian.org/debian trixie/main amd64 libcurl4t64 amd64 8.14.1-2+deb13u5 [391 kB]
+#12 3.575 Get:22 http://deb.debian.org/debian trixie/main amd64 curl amd64 8.14.1-2+deb13u5 [270 kB]
+#12 3.726 debconf: unable to initialize frontend: Dialog
+#12 3.726 debconf: (TERM is not set, so the dialog frontend is not usable.)
+#12 3.726 debconf: falling back to frontend: Readline
+#12 3.726 debconf: unable to initialize frontend: Readline
+#12 3.726 debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC entries checked: /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.40.1 /usr/local/share/perl/5.40.1 /usr/lib/x86_64-linux-gnu/perl5/5.40 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl-base /usr/lib/x86_64-linux-gnu/perl/5.40 /usr/share/perl/5.40 /usr/local/lib/site_perl) at /usr/share/perl5/Debconf/FrontEnd/Readline.pm line 8, <STDIN> line 22.)
+#12 3.726 debconf: falling back to frontend: Teletype
+#12 3.729 debconf: unable to initialize frontend: Teletype
+#12 3.729 debconf: (This frontend requires a controlling tty.)
+#12 3.729 debconf: falling back to frontend: Noninteractive
+#12 4.255 Fetched 4888 kB in 0s (10.7 MB/s)
+#12 4.280 Selecting previously unselected package libbrotli1:amd64.
+#12 4.280 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 5660 files and directories currently installed.)
+#12 4.285 Preparing to unpack .../00-libbrotli1_1.1.0-2+b7_amd64.deb ...
+#12 4.293 Unpacking libbrotli1:amd64 (1.1.0-2+b7) ...
+#12 4.337 Selecting previously unselected package libkrb5support0:amd64.
+#12 4.338 Preparing to unpack .../01-libkrb5support0_1.21.3-5+deb13u1_amd64.deb ...
+#12 4.342 Unpacking libkrb5support0:amd64 (1.21.3-5+deb13u1) ...
+#12 4.371 Selecting previously unselected package libcom-err2:amd64.
+#12 4.372 Preparing to unpack .../02-libcom-err2_1.47.2-3+b12_amd64.deb ...
+#12 4.375 Unpacking libcom-err2:amd64 (1.47.2-3+b12) ...
+#12 4.411 Selecting previously unselected package libk5crypto3:amd64.
+#12 4.412 Preparing to unpack .../03-libk5crypto3_1.21.3-5+deb13u1_amd64.deb ...
+#12 4.415 Unpacking libk5crypto3:amd64 (1.21.3-5+deb13u1) ...
+#12 4.447 Selecting previously unselected package libkeyutils1:amd64.
+#12 4.448 Preparing to unpack .../04-libkeyutils1_1.6.3-6_amd64.deb ...
+#12 4.455 Unpacking libkeyutils1:amd64 (1.6.3-6) ...
+#12 4.487 Selecting previously unselected package libkrb5-3:amd64.
+#12 4.488 Preparing to unpack .../05-libkrb5-3_1.21.3-5+deb13u1_amd64.deb ...
+#12 4.492 Unpacking libkrb5-3:amd64 (1.21.3-5+deb13u1) ...
+#12 4.538 Selecting previously unselected package libgssapi-krb5-2:amd64.
+#12 4.539 Preparing to unpack .../06-libgssapi-krb5-2_1.21.3-5+deb13u1_amd64.deb ...
+#12 4.543 Unpacking libgssapi-krb5-2:amd64 (1.21.3-5+deb13u1) ...
+#12 4.576 Selecting previously unselected package libunistring5:amd64.
+#12 4.577 Preparing to unpack .../07-libunistring5_1.3-2_amd64.deb ...
+#12 4.581 Unpacking libunistring5:amd64 (1.3-2) ...
+#12 4.628 Selecting previously unselected package libidn2-0:amd64.
+#12 4.629 Preparing to unpack .../08-libidn2-0_2.3.8-2_amd64.deb ...
+#12 4.633 Unpacking libidn2-0:amd64 (2.3.8-2) ...
+#12 4.668 Selecting previously unselected package libsasl2-modules-db:amd64.
+#12 4.669 Preparing to unpack .../09-libsasl2-modules-db_2.1.28+dfsg1-9_amd64.deb ...
+#12 4.673 Unpacking libsasl2-modules-db:amd64 (2.1.28+dfsg1-9) ...
+#12 4.702 Selecting previously unselected package libsasl2-2:amd64.
+#12 4.703 Preparing to unpack .../10-libsasl2-2_2.1.28+dfsg1-9_amd64.deb ...
+#12 4.707 Unpacking libsasl2-2:amd64 (2.1.28+dfsg1-9) ...
+#12 4.742 Selecting previously unselected package libldap2:amd64.
+#12 4.743 Preparing to unpack .../11-libldap2_2.6.10+dfsg-1_amd64.deb ...
+#12 4.746 Unpacking libldap2:amd64 (2.6.10+dfsg-1) ...
+#12 4.786 Selecting previously unselected package libnghttp2-14:amd64.
+#12 4.787 Preparing to unpack .../12-libnghttp2-14_1.64.0-1.1+deb13u1_amd64.deb ...
+#12 4.791 Unpacking libnghttp2-14:amd64 (1.64.0-1.1+deb13u1) ...
+#12 4.822 Selecting previously unselected package libnghttp3-9:amd64.
+#12 4.823 Preparing to unpack .../13-libnghttp3-9_1.8.0-1_amd64.deb ...
+#12 4.827 Unpacking libnghttp3-9:amd64 (1.8.0-1) ...
+#12 4.862 Selecting previously unselected package libpsl5t64:amd64.
+#12 4.863 Preparing to unpack .../14-libpsl5t64_0.21.2-1.1+b1_amd64.deb ...
+#12 4.866 Unpacking libpsl5t64:amd64 (0.21.2-1.1+b1) ...
+#12 4.897 Selecting previously unselected package libp11-kit0:amd64.
+#12 4.898 Preparing to unpack .../15-libp11-kit0_0.25.5-3_amd64.deb ...
+#12 4.901 Unpacking libp11-kit0:amd64 (0.25.5-3) ...
+#12 4.943 Selecting previously unselected package libtasn1-6:amd64.
+#12 4.944 Preparing to unpack .../16-libtasn1-6_4.20.0-2+deb13u1_amd64.deb ...
+#12 4.948 Unpacking libtasn1-6:amd64 (4.20.0-2+deb13u1) ...
+#12 4.982 Selecting previously unselected package libgnutls30t64:amd64.
+#12 4.983 Preparing to unpack .../17-libgnutls30t64_3.8.9-3+deb13u4_amd64.deb ...
+#12 4.987 Unpacking libgnutls30t64:amd64 (3.8.9-3+deb13u4) ...
+#12 5.053 Selecting previously unselected package librtmp1:amd64.
+#12 5.054 Preparing to unpack .../18-librtmp1_2.4+20151223.gitfa8646d.1-2+b5_amd64.deb ...
+#12 5.057 Unpacking librtmp1:amd64 (2.4+20151223.gitfa8646d.1-2+b5) ...
+#12 5.093 Selecting previously unselected package libssh2-1t64:amd64.
+#12 5.094 Preparing to unpack .../19-libssh2-1t64_1.11.1-1+deb13u2_amd64.deb ...
+#12 5.097 Unpacking libssh2-1t64:amd64 (1.11.1-1+deb13u2) ...
+#12 5.132 Selecting previously unselected package libcurl4t64:amd64.
+#12 5.133 Preparing to unpack .../20-libcurl4t64_8.14.1-2+deb13u5_amd64.deb ...
+#12 5.136 Unpacking libcurl4t64:amd64 (8.14.1-2+deb13u5) ...
+#12 5.176 Selecting previously unselected package curl.
+#12 5.178 Preparing to unpack .../21-curl_8.14.1-2+deb13u5_amd64.deb ...
+#12 5.181 Unpacking curl (8.14.1-2+deb13u5) ...
+#12 5.217 Setting up libkeyutils1:amd64 (1.6.3-6) ...
+#12 5.233 Setting up libbrotli1:amd64 (1.1.0-2+b7) ...
+#12 5.244 Setting up libnghttp2-14:amd64 (1.64.0-1.1+deb13u1) ...
+#12 5.253 Setting up libcom-err2:amd64 (1.47.2-3+b12) ...
+#12 5.263 Setting up libkrb5support0:amd64 (1.21.3-5+deb13u1) ...
+#12 5.275 Setting up libsasl2-modules-db:amd64 (2.1.28+dfsg1-9) ...
+#12 5.285 Setting up libp11-kit0:amd64 (0.25.5-3) ...
+#12 5.299 Setting up libunistring5:amd64 (1.3-2) ...
+#12 5.308 Setting up libk5crypto3:amd64 (1.21.3-5+deb13u1) ...
+#12 5.318 Setting up libsasl2-2:amd64 (2.1.28+dfsg1-9) ...
+#12 5.329 Setting up libnghttp3-9:amd64 (1.8.0-1) ...
+#12 5.339 Setting up libtasn1-6:amd64 (4.20.0-2+deb13u1) ...
+#12 5.349 Setting up libkrb5-3:amd64 (1.21.3-5+deb13u1) ...
+#12 5.365 Setting up libssh2-1t64:amd64 (1.11.1-1+deb13u2) ...
+#12 5.378 Setting up libldap2:amd64 (2.6.10+dfsg-1) ...
+#12 5.388 Setting up libidn2-0:amd64 (2.3.8-2) ...
+#12 5.398 Setting up libgssapi-krb5-2:amd64 (1.21.3-5+deb13u1) ...
+#12 5.409 Setting up libgnutls30t64:amd64 (3.8.9-3+deb13u4) ...
+#12 5.425 Setting up libpsl5t64:amd64 (0.21.2-1.1+b1) ...
+#12 5.435 Setting up librtmp1:amd64 (2.4+20151223.gitfa8646d.1-2+b5) ...
+#12 5.445 Setting up libcurl4t64:amd64 (8.14.1-2+deb13u5) ...
+#12 5.456 Setting up curl (8.14.1-2+deb13u5) ...
+#12 5.466 Processing triggers for libc-bin (2.41-12+deb13u4) ...
+#12 DONE 5.6s
+
+#13 [api 4/6] COPY requirements.txt .
+#13 DONE 0.0s
+
+#14 [flask 4/6] COPY requirements.txt .
+#14 DONE 0.0s
+
+#15 [api 5/6] RUN pip install --no-cache-dir -r requirements.txt
+#15 1.922 Collecting fastapi>=0.110.0 (from -r requirements.txt (line 1))
+#15 1.986   Downloading fastapi-0.142.2-py3-none-any.whl.metadata (27 kB)
+#15 2.044 Collecting uvicorn>=0.28.0 (from uvicorn[standard]>=0.28.0->-r requirements.txt (line 2))
+#15 2.060   Downloading uvicorn-0.54.0-py3-none-any.whl.metadata (6.6 kB)
+#15 2.155 Collecting starlette>=0.46.0 (from fastapi>=0.110.0->-r requirements.txt (line 1))
+#15 2.173   Downloading starlette-1.7.0-py3-none-any.whl.metadata (6.6 kB)
+#15 2.364 Collecting pydantic>=2.9.0 (from fastapi>=0.110.0->-r requirements.txt (line 1))
+#15 2.378   Downloading pydantic-2.13.5-py3-none-any.whl.metadata (110 kB)
+#15 2.397      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 110.2/110.2 kB 6.7 MB/s eta 0:00:00
+#15 2.433 Collecting typing-extensions>=4.8.0 (from fastapi>=0.110.0->-r requirements.txt (line 1))
+#15 2.448   Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+#15 2.470 Collecting typing-inspection>=0.4.2 (from fastapi>=0.110.0->-r requirements.txt (line 1))
+#15 2.485   Downloading typing_inspection-0.4.4-py3-none-any.whl.metadata (2.6 kB)
+#15 2.508 Collecting annotated-doc>=0.0.2 (from fastapi>=0.110.0->-r requirements.txt (line 1))
+#15 2.524   Downloading annotated_doc-0.0.5-py3-none-any.whl.metadata (6.5 kB)
+#15 2.569 Collecting opentelemetry-api>=1.44.0 (from fastapi>=0.110.0->-r requirements.txt (line 1))
+#15 2.584   Downloading opentelemetry_api-1.45.1-py3-none-any.whl.metadata (1.4 kB)
+#15 2.658 Collecting click>=7.0 (from uvicorn>=0.28.0->uvicorn[standard]>=0.28.0->-r requirements.txt (line 2))
+#15 2.673   Downloading click-8.5.0-py3-none-any.whl.metadata (2.6 kB)
+#15 2.696 Collecting h11>=0.8 (from uvicorn>=0.28.0->uvicorn[standard]>=0.28.0->-r requirements.txt (line 2))
+#15 2.711   Downloading h11-0.16.0-py3-none-any.whl.metadata (8.3 kB)
+#15 2.779 Collecting httptools>=0.8.0 (from uvicorn[standard]>=0.28.0->-r requirements.txt (line 2))
+#15 2.793   Downloading httptools-0.8.0-cp311-cp311-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (3.5 kB)
+#15 2.826 Collecting python-dotenv>=0.13 (from uvicorn[standard]>=0.28.0->-r requirements.txt (line 2))
+#15 2.841   Downloading python_dotenv-1.2.4-py3-none-any.whl.metadata (29 kB)
+#15 2.900 Collecting pyyaml>=5.1 (from uvicorn[standard]>=0.28.0->-r requirements.txt (line 2))
+#15 2.917   Downloading pyyaml-6.0.3-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+#15 2.989 Collecting uvloop>=0.15.1 (from uvicorn[standard]>=0.28.0->-r requirements.txt (line 2))
+#15 3.013   Downloading uvloop-0.23.0-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (5.1 kB)
+#15 3.133 Collecting watchfiles>=0.20 (from uvicorn[standard]>=0.28.0->-r requirements.txt (line 2))
+#15 3.149   Downloading watchfiles-1.3.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.9 kB)
+#15 3.316 Collecting websockets>=13.0 (from uvicorn[standard]>=0.28.0->-r requirements.txt (line 2))
+#15 3.330   Downloading websockets-17.2-cp311-cp311-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (6.3 kB)
+#15 3.368 Collecting annotated-types>=0.6.0 (from pydantic>=2.9.0->fastapi>=0.110.0->-r requirements.txt (line 1))
+#15 3.383   Downloading annotated_types-0.8.0-py3-none-any.whl.metadata (15 kB)
+#15 4.445 Collecting pydantic-core==2.46.5 (from pydantic>=2.9.0->fastapi>=0.110.0->-r requirements.txt (line 1))
+#15 4.460   Downloading pydantic_core-2.46.5-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.6 kB)
+#15 4.521 Collecting anyio<5,>=4.0.0 (from starlette>=0.46.0->fastapi>=0.110.0->-r requirements.txt (line 1))
+#15 4.536   Downloading anyio-4.15.1-py3-none-any.whl.metadata (4.7 kB)
+#15 4.622 Collecting idna>=2.8 (from anyio<5,>=4.0.0->starlette>=0.46.0->fastapi>=0.110.0->-r requirements.txt (line 1))
+#15 4.637   Downloading idna-3.20-py3-none-any.whl.metadata (7.2 kB)
+#15 4.669 Downloading fastapi-0.142.2-py3-none-any.whl (144 kB)
+#15 4.681    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 144.4/144.4 kB 13.4 MB/s eta 0:00:00
+#15 4.696 Downloading uvicorn-0.54.0-py3-none-any.whl (87 kB)
+#15 4.700    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 87.4/87.4 kB 44.8 MB/s eta 0:00:00
+#15 4.715 Downloading annotated_doc-0.0.5-py3-none-any.whl (5.3 kB)
+#15 4.729 Downloading click-8.5.0-py3-none-any.whl (125 kB)
+#15 4.741    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 125.3/125.3 kB 12.6 MB/s eta 0:00:00
+#15 4.755 Downloading h11-0.16.0-py3-none-any.whl (37 kB)
+#15 4.772 Downloading httptools-0.8.0-cp311-cp311-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (464 kB)
+#15 4.810    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 464.7/464.7 kB 12.9 MB/s eta 0:00:00
+#15 4.825 Downloading opentelemetry_api-1.45.1-py3-none-any.whl (60 kB)
+#15 4.832    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 60.3/60.3 kB 13.7 MB/s eta 0:00:00
+#15 4.848 Downloading pydantic-2.13.5-py3-none-any.whl (472 kB)
+#15 4.882    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 472.6/472.6 kB 15.0 MB/s eta 0:00:00
+#15 4.898 Downloading pydantic_core-2.46.5-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (2.1 MB)
+#15 5.054    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.1/2.1 MB 13.4 MB/s eta 0:00:00
+#15 5.068 Downloading python_dotenv-1.2.4-py3-none-any.whl (23 kB)
+#15 5.088 Downloading pyyaml-6.0.3-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (806 kB)
+#15 5.144    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 806.6/806.6 kB 14.8 MB/s eta 0:00:00
+#15 5.161 Downloading starlette-1.7.0-py3-none-any.whl (78 kB)
+#15 5.169    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 79.0/79.0 kB 14.0 MB/s eta 0:00:00
+#15 5.185 Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+#15 5.189    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 45.6/45.6 kB 18.2 MB/s eta 0:00:00
+#15 5.206 Downloading typing_inspection-0.4.4-py3-none-any.whl (14 kB)
+#15 5.223 Downloading uvloop-0.23.0-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (4.0 MB)
+#15 5.398    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.0/4.0 MB 22.9 MB/s eta 0:00:00
+#15 5.412 Downloading watchfiles-1.3.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (458 kB)
+#15 5.444    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 458.4/458.4 kB 16.2 MB/s eta 0:00:00
+#15 5.461 Downloading websockets-17.2-cp311-cp311-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (225 kB)
+#15 5.474    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 225.0/225.0 kB 21.4 MB/s eta 0:00:00
+#15 5.488 Downloading annotated_types-0.8.0-py3-none-any.whl (13 kB)
+#15 5.502 Downloading anyio-4.15.1-py3-none-any.whl (132 kB)
+#15 5.515    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 132.1/132.1 kB 13.5 MB/s eta 0:00:00
+#15 5.531 Downloading idna-3.20-py3-none-any.whl (69 kB)
+#15 5.534    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 69.6/69.6 kB 49.7 MB/s eta 0:00:00
+#15 5.884 Installing collected packages: websockets, uvloop, typing-extensions, pyyaml, python-dotenv, idna, httptools, h11, click, annotated-types, annotated-doc, uvicorn, typing-inspection, pydantic-core, opentelemetry-api, anyio, watchfiles, starlette, pydantic, fastapi
+#15 7.158 Successfully installed annotated-doc-0.0.5 annotated-types-0.8.0 anyio-4.15.1 click-8.5.0 fastapi-0.142.2 h11-0.16.0 httptools-0.8.0 idna-3.20 opentelemetry-api-1.45.1 pydantic-2.13.5 pydantic-core-2.46.5 python-dotenv-1.2.4 pyyaml-6.0.3 starlette-1.7.0 typing-extensions-4.16.0 typing-inspection-0.4.4 uvicorn-0.54.0 uvloop-0.23.0 watchfiles-1.3.0 websockets-17.2
+#15 7.158 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+#15 7.268 
+#15 7.268 [notice] A new release of pip is available: 24.0 -> 26.2.1
+#15 7.268 [notice] To update, run: pip install --upgrade pip
+#15 ...
+
+#16 [flask 5/6] RUN pip install --no-cache-dir -r requirements.txt
+#16 2.152 Collecting flask>=3.0.0 (from -r requirements.txt (line 1))
+#16 2.200   Downloading flask-3.1.3-py3-none-any.whl.metadata (3.2 kB)
+#16 2.244 Collecting opentelemetry-api>=1.25.0 (from -r requirements.txt (line 2))
+#16 2.256   Downloading opentelemetry_api-1.45.1-py3-none-any.whl.metadata (1.4 kB)
+#16 2.299 Collecting opentelemetry-sdk>=1.25.0 (from -r requirements.txt (line 3))
+#16 2.311   Downloading opentelemetry_sdk-1.45.1-py3-none-any.whl.metadata (1.6 kB)
+#16 2.351 Collecting opentelemetry-exporter-otlp-proto-grpc>=1.25.0 (from -r requirements.txt (line 4))
+#16 2.362   Downloading opentelemetry_exporter_otlp_proto_grpc-1.45.1-py3-none-any.whl.metadata (2.6 kB)
+#16 2.409 Collecting opentelemetry-instrumentation-flask>=0.46b0 (from -r requirements.txt (line 5))
+#16 2.472   Downloading opentelemetry_instrumentation_flask-0.66b1-py3-none-any.whl.metadata (2.2 kB)
+#16 2.501 Collecting blinker>=1.9.0 (from flask>=3.0.0->-r requirements.txt (line 1))
+#16 2.512   Downloading blinker-1.9.0-py3-none-any.whl.metadata (1.6 kB)
+#16 2.547 Collecting click>=8.1.3 (from flask>=3.0.0->-r requirements.txt (line 1))
+#16 2.560   Downloading click-8.5.0-py3-none-any.whl.metadata (2.6 kB)
+#16 2.584 Collecting itsdangerous>=2.2.0 (from flask>=3.0.0->-r requirements.txt (line 1))
+#16 2.595   Downloading itsdangerous-2.2.0-py3-none-any.whl.metadata (1.9 kB)
+#16 2.630 Collecting jinja2>=3.1.2 (from flask>=3.0.0->-r requirements.txt (line 1))
+#16 2.642   Downloading jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+#16 2.731 Collecting markupsafe>=2.1.1 (from flask>=3.0.0->-r requirements.txt (line 1))
+#16 2.742   Downloading markupsafe-3.0.4-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.7 kB)
+#16 2.788 Collecting werkzeug>=3.1.0 (from flask>=3.0.0->-r requirements.txt (line 1))
+#16 2.799   Downloading werkzeug-3.1.9-py3-none-any.whl.metadata (4.1 kB)
+#16 2.834 Collecting typing-extensions>=4.5.0 (from opentelemetry-api>=1.25.0->-r requirements.txt (line 2))
+#16 2.844   Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+#16 2.889 Collecting opentelemetry-semantic-conventions==0.66b1 (from opentelemetry-sdk>=1.25.0->-r requirements.txt (line 3))
+#16 2.900   Downloading opentelemetry_semantic_conventions-0.66b1-py3-none-any.whl.metadata (2.4 kB)
+#16 2.953 Collecting googleapis-common-protos~=1.57 (from opentelemetry-exporter-otlp-proto-grpc>=1.25.0->-r requirements.txt (line 4))
+#16 2.964   Downloading googleapis_common_protos-1.75.5-py3-none-any.whl.metadata (8.5 kB)
+#16 3.759 Collecting grpcio<2.0.0,>=1.63.2 (from opentelemetry-exporter-otlp-proto-grpc>=1.25.0->-r requirements.txt (line 4))
+#16 3.771   Downloading grpcio-1.84.0-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (3.8 kB)
+#16 3.797 Collecting opentelemetry-exporter-otlp-common==0.66b1 (from opentelemetry-exporter-otlp-proto-grpc>=1.25.0->-r requirements.txt (line 4))
+#16 3.808   Downloading opentelemetry_exporter_otlp_common-0.66b1-py3-none-any.whl.metadata (1.9 kB)
+#16 3.837 Collecting opentelemetry-exporter-otlp-proto-common==1.45.1 (from opentelemetry-exporter-otlp-proto-grpc>=1.25.0->-r requirements.txt (line 4))
+#16 3.848   Downloading opentelemetry_exporter_otlp_proto_common-1.45.1-py3-none-any.whl.metadata (1.8 kB)
+#16 3.887 Collecting opentelemetry-proto==1.45.1 (from opentelemetry-exporter-otlp-proto-grpc>=1.25.0->-r requirements.txt (line 4))
+#16 3.897   Downloading opentelemetry_proto-1.45.1-py3-none-any.whl.metadata (2.3 kB)
+#16 4.149 Collecting protobuf<8.0,>=5.0 (from opentelemetry-proto==1.45.1->opentelemetry-exporter-otlp-proto-grpc>=1.25.0->-r requirements.txt (line 4))
+#16 4.161   Downloading protobuf-7.36.2-cp310-abi3-manylinux2014_x86_64.whl.metadata (595 bytes)
+#16 4.213 Collecting opentelemetry-instrumentation-wsgi==0.66b1 (from opentelemetry-instrumentation-flask>=0.46b0->-r requirements.txt (line 5))
+#16 4.276   Downloading opentelemetry_instrumentation_wsgi-0.66b1-py3-none-any.whl.metadata (2.1 kB)
+#16 4.314 Collecting opentelemetry-instrumentation==0.66b1 (from opentelemetry-instrumentation-flask>=0.46b0->-r requirements.txt (line 5))
+#16 4.325   Downloading opentelemetry_instrumentation-0.66b1-py3-none-any.whl.metadata (7.2 kB)
+#16 4.364 Collecting opentelemetry-util-http==0.66b1 (from opentelemetry-instrumentation-flask>=0.46b0->-r requirements.txt (line 5))
+#16 4.375   Downloading opentelemetry_util_http-0.66b1-py3-none-any.whl.metadata (2.6 kB)
+#16 4.377 Requirement already satisfied: packaging>=21.0 in /usr/local/lib/python3.11/site-packages (from opentelemetry-instrumentation-flask>=0.46b0->-r requirements.txt (line 5)) (26.3)
+#16 5.007 Collecting wrapt<3.0.0,>=1.0.0 (from opentelemetry-instrumentation==0.66b1->opentelemetry-instrumentation-flask>=0.46b0->-r requirements.txt (line 5))
+#16 5.020   Downloading wrapt-2.5.0-cp311-cp311-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (7.6 kB)
+#16 5.139 Downloading flask-3.1.3-py3-none-any.whl (103 kB)
+#16 5.152    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 103.4/103.4 kB 9.3 MB/s eta 0:00:00
+#16 5.164 Downloading opentelemetry_api-1.45.1-py3-none-any.whl (60 kB)
+#16 5.169    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 60.3/60.3 kB 16.2 MB/s eta 0:00:00
+#16 5.181 Downloading opentelemetry_sdk-1.45.1-py3-none-any.whl (140 kB)
+#16 5.192    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 140.1/140.1 kB 15.3 MB/s eta 0:00:00
+#16 5.203 Downloading opentelemetry_semantic_conventions-0.66b1-py3-none-any.whl (206 kB)
+#16 5.215    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 206.3/206.3 kB 21.3 MB/s eta 0:00:00
+#16 5.254 Downloading opentelemetry_exporter_otlp_proto_grpc-1.45.1-py3-none-any.whl (19 kB)
+#16 5.287 Downloading opentelemetry_exporter_otlp_common-0.66b1-py3-none-any.whl (12 kB)
+#16 5.321 Downloading opentelemetry_exporter_otlp_proto_common-1.45.1-py3-none-any.whl (15 kB)
+#16 5.338 Downloading opentelemetry_proto-1.45.1-py3-none-any.whl (72 kB)
+#16 5.344    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 72.5/72.5 kB 36.0 MB/s eta 0:00:00
+#16 5.421 Downloading opentelemetry_instrumentation_flask-0.66b1-py3-none-any.whl (14 kB)
+#16 5.435 Downloading opentelemetry_instrumentation-0.66b1-py3-none-any.whl (36 kB)
+#16 5.500 Downloading opentelemetry_instrumentation_wsgi-0.66b1-py3-none-any.whl (13 kB)
+#16 5.515 Downloading opentelemetry_util_http-0.66b1-py3-none-any.whl (8.4 kB)
+#16 5.527 Downloading blinker-1.9.0-py3-none-any.whl (8.5 kB)
+#16 5.540 Downloading click-8.5.0-py3-none-any.whl (125 kB)
+#16 5.552    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 125.3/125.3 kB 12.0 MB/s eta 0:00:00
+#16 5.565 Downloading googleapis_common_protos-1.75.5-py3-none-any.whl (307 kB)
+#16 5.576    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 307.7/307.7 kB 37.2 MB/s eta 0:00:00
+#16 5.589 Downloading grpcio-1.84.0-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (7.2 MB)
+#16 5.847    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 7.2/7.2 MB 28.2 MB/s eta 0:00:00
+#16 5.859 Downloading itsdangerous-2.2.0-py3-none-any.whl (16 kB)
+#16 5.872 Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)
+#16 5.877    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 134.9/134.9 kB 43.7 MB/s eta 0:00:00
+#16 5.889 Downloading markupsafe-3.0.4-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (22 kB)
+#16 5.901 Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+#16 5.904    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 45.6/45.6 kB 34.0 MB/s eta 0:00:00
+#16 5.915 Downloading werkzeug-3.1.9-py3-none-any.whl (228 kB)
+#16 5.933    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 228.7/228.7 kB 14.4 MB/s eta 0:00:00
+#16 5.946 Downloading protobuf-7.36.2-cp310-abi3-manylinux2014_x86_64.whl (343 kB)
+#16 5.965    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 343.2/343.2 kB 20.0 MB/s eta 0:00:00
+#16 5.976 Downloading wrapt-2.5.0-cp311-cp311-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (239 kB)
+#16 5.986    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 239.8/239.8 kB 29.6 MB/s eta 0:00:00
+#16 6.099 Installing collected packages: wrapt, typing-extensions, protobuf, opentelemetry-util-http, markupsafe, itsdangerous, click, blinker, werkzeug, opentelemetry-proto, opentelemetry-api, jinja2, grpcio, googleapis-common-protos, opentelemetry-semantic-conventions, opentelemetry-exporter-otlp-proto-common, flask, opentelemetry-sdk, opentelemetry-instrumentation, opentelemetry-instrumentation-wsgi, opentelemetry-exporter-otlp-common, opentelemetry-instrumentation-flask, opentelemetry-exporter-otlp-proto-grpc
+#16 7.340 Successfully installed blinker-1.9.0 click-8.5.0 flask-3.1.3 googleapis-common-protos-1.75.5 grpcio-1.84.0 itsdangerous-2.2.0 jinja2-3.1.6 markupsafe-3.0.4 opentelemetry-api-1.45.1 opentelemetry-exporter-otlp-common-0.66b1 opentelemetry-exporter-otlp-proto-common-1.45.1 opentelemetry-exporter-otlp-proto-grpc-1.45.1 opentelemetry-instrumentation-0.66b1 opentelemetry-instrumentation-flask-0.66b1 opentelemetry-instrumentation-wsgi-0.66b1 opentelemetry-proto-1.45.1 opentelemetry-sdk-1.45.1 opentelemetry-semantic-conventions-0.66b1 opentelemetry-util-http-0.66b1 protobuf-7.36.2 typing-extensions-4.16.0 werkzeug-3.1.9 wrapt-2.5.0
+#16 7.341 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+#16 7.545 
+#16 7.545 [notice] A new release of pip is available: 24.0 -> 26.2.1
+#16 7.545 [notice] To update, run: pip install --upgrade pip
+#16 DONE 8.3s
+
+#15 [api 5/6] RUN pip install --no-cache-dir -r requirements.txt
+#15 DONE 8.3s
+
+#17 [flask 6/6] COPY . .
+#17 DONE 0.1s
+
+#18 [api 6/6] COPY ./app ./app
+#18 DONE 0.1s
+
+#19 [api] exporting to image
+#19 exporting layers
+#19 exporting layers 2.0s done
+#19 exporting manifest sha256:8d024149c971cdaf7a531de9a67beef7366185d7ca2e9d91488eb2d7ec39db98 0.0s done
+#19 exporting config sha256:4268ad3708c299ed52e5f274eb5c2520501be304981158cb8cb45b2762faa92b 0.0s done
+#19 exporting attestation manifest sha256:5000934fc3fee508008ed0372c3be5a74d170b25cf2b005cf1a94d5520c968d4 0.0s done
+#19 exporting manifest list sha256:4282836c50898761096dad254ce677e37de7479778bae76fc0fc6507292792f1 0.0s done
+#19 naming to docker.io/library/observabilidad-fluentd-api:latest done
+#19 unpacking to docker.io/library/observabilidad-fluentd-api:latest
+#19 unpacking to docker.io/library/observabilidad-fluentd-api:latest 0.4s done
+#19 DONE 2.6s
+
+#20 [flask] exporting to image
+#20 exporting layers 1.8s done
+#20 exporting manifest sha256:44dca83e9442faf077e83220aec50e94815747eab31f73ef7aa12f671b464407 0.0s done
+#20 exporting config sha256:9aeb20d6fd2ada5c1b47632e9d0e64a8afe0f12903c3f96e0e70e9334655c17f 0.0s done
+#20 exporting attestation manifest sha256:20374035f1b6862075f459846de328e12a2fa7486fd06f67621b16a1d89878bc 0.0s done
+#20 exporting manifest list sha256:11f9d0ccef4bd5eeb54b17bb2314bd289869c142b6beae8cbff0ad1e4c86faff 0.0s done
+#20 naming to docker.io/library/observabilidad-fluentd-flask:latest done
+#20 unpacking to docker.io/library/observabilidad-fluentd-flask:latest 0.6s done
+#20 DONE 2.5s
+
+#21 [flask] resolving provenance for metadata file
+#21 DONE 0.1s
+
+#22 [api] resolving provenance for metadata file
+#22 DONE 0.0s
+ Image observabilidad-fluentd-api Built 
+ Image observabilidad-fluentd-flask Built 
+ Network observabilidad-fluentd_default Creating 
+ Network observabilidad-fluentd_default Creating 
+ Network observabilidad-fluentd_default Created 
+ Network observabilidad-fluentd_default Created 
+ Container otel-collector Creating 
+ Container flask_app Creating 
+ Container prometheus Creating 
+ Container jaeger Creating 
+ Container fluentd Creating 
+ Container fluentd Created 
+ Container otel-collector Created 
+ Container fastapi_app Creating 
+ Container flask_app Created 
+ Container prometheus Created 
+ Container jaeger Created 
+ Container fastapi_app Created 
+ Container nginx_proxy Creating 
+ Container nginx_proxy Created 
+ Container locust Creating 
+ Container locust Created 
+ Container flask_app Starting 
+ Container fluentd Starting 
+ Container otel-collector Starting 
+ Container prometheus Starting 
+ Container jaeger Starting 
+ Container flask_app Started 
+ Container fluentd Started 
+ Container fastapi_app Starting 
+ Container otel-collector Started 
+ Container prometheus Started 
+ Container jaeger Started 
+ Container fastapi_app Started 
+ Container nginx_proxy Starting 
+ Container nginx_proxy Started 
+ Container locust Starting 
+ Container locust Started 
+ Image observabilidad-fluentd-api Building 
+ Image observabilidad-fluentd-flask Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 1.12kB 0.0s done
+#1 DONE 0.0s
+
+#2 [api internal] load build definition from Dockerfile
+#2 transferring dockerfile: 493B done
+#2 DONE 0.0s
+
+#3 [flask internal] load build definition from Dockerfile
+#3 transferring dockerfile: 425B done
+#3 DONE 0.0s
+
+#4 [flask internal] load metadata for docker.io/library/python:3.11-slim
+#4 ...
+
+#5 [auth] library/python:pull token for registry-1.docker.io
+#5 DONE 0.0s
+
+#4 [flask internal] load metadata for docker.io/library/python:3.11-slim
+#4 DONE 0.9s
+
+#6 [flask internal] load .dockerignore
+#6 transferring context: 2B done
+#6 DONE 0.0s
+
+#7 [api internal] load .dockerignore
+#7 transferring context: 2B 0.0s done
+#7 DONE 0.0s
+
+#8 [flask internal] load build context
+#8 transferring context: 126B done
+#8 DONE 0.0s
+
+#9 [api internal] load build context
+#9 transferring context: 164B done
+#9 DONE 0.0s
+
+#10 [flask 1/6] FROM docker.io/library/python:3.11-slim@sha256:0dd364ba7e10242f07755449e3a3d0e35f9efd987952737b90def6709ab0c5ce
+#10 resolve docker.io/library/python:3.11-slim@sha256:0dd364ba7e10242f07755449e3a3d0e35f9efd987952737b90def6709ab0c5ce 0.0s done
+#10 DONE 0.0s
+
+#11 [api 5/6] RUN pip install --no-cache-dir -r requirements.txt
+#11 CACHED
+
+#12 [api 4/6] COPY requirements.txt .
+#12 CACHED
+
+#13 [api 6/6] COPY ./app ./app
+#13 CACHED
+
+#14 [api 2/6] WORKDIR /code
+#14 CACHED
+
+#15 [flask 4/6] COPY requirements.txt .
+#15 CACHED
+
+#16 [api 3/6] RUN apt-get update && apt-get install -y --no-install-recommends curl     && rm -rf /var/lib/apt/lists/*
+#16 CACHED
+
+#17 [flask 5/6] RUN pip install --no-cache-dir -r requirements.txt
+#17 CACHED
+
+#18 [flask 6/6] COPY . .
+#18 CACHED
+
+#19 [flask] exporting to image
+#19 exporting layers done
+#19 exporting manifest sha256:44dca83e9442faf077e83220aec50e94815747eab31f73ef7aa12f671b464407 done
+#19 exporting config sha256:9aeb20d6fd2ada5c1b47632e9d0e64a8afe0f12903c3f96e0e70e9334655c17f done
+#19 exporting attestation manifest sha256:2e49bfdde0f02c70725ec3c607a69834a10ac85d0c692e6e749ddb1fd8886702 0.0s done
+#19 exporting manifest list sha256:a797fd69fd41a40c198785a0003b7fb6e400225f0e4c99afc1d804ae553a6a96
+#19 exporting manifest list sha256:a797fd69fd41a40c198785a0003b7fb6e400225f0e4c99afc1d804ae553a6a96 0.0s done
+#19 naming to docker.io/library/observabilidad-fluentd-flask:latest done
+#19 unpacking to docker.io/library/observabilidad-fluentd-flask:latest done
+#19 DONE 0.1s
+
+#20 [api] exporting to image
+#20 exporting layers done
+#20 exporting manifest sha256:8d024149c971cdaf7a531de9a67beef7366185d7ca2e9d91488eb2d7ec39db98 done
+#20 exporting config sha256:4268ad3708c299ed52e5f274eb5c2520501be304981158cb8cb45b2762faa92b done
+#20 exporting attestation manifest sha256:f7772142cb1e476e992e7bca86d0acd3e731e4c4224498878738ad8ac9be0d59 0.0s done
+#20 exporting manifest list sha256:e9dc69353dff2f80f6898d1a82aff238e22fcfdedc559f7534ea74c04de43b45 0.0s done
+#20 naming to docker.io/library/observabilidad-fluentd-api:latest done
+#20 unpacking to docker.io/library/observabilidad-fluentd-api:latest done
+#20 DONE 0.1s
+
+#21 [flask] resolving provenance for metadata file
+#21 DONE 0.0s
+
+#22 [api] resolving provenance for metadata file
+#22 DONE 0.0s
+ Image observabilidad-fluentd-api Built 
+ Image observabilidad-fluentd-flask Built 
+ Network observabilidad-fluentd_default Creating 
+ Network observabilidad-fluentd_default Creating 
+ Network observabilidad-fluentd_default Created 
+ Network observabilidad-fluentd_default Created 
+ Container fluentd Creating 
+ Container flask_app Creating 
+ Container jaeger Creating 
+ Container otel-collector Creating 
+ Container prometheus Creating 
+ Container otel-collector Created 
+ Container flask_app Created 
+ Container fluentd Created 
+ Container fastapi_app Creating 
+ Container prometheus Created 
+ Container jaeger Created 
+ Container fastapi_app Created 
+ Container nginx_proxy Creating 
+ Container nginx_proxy Created 
+ Container locust Creating 
+ Container locust Created 
+ Container flask_app Starting 
+ Container prometheus Starting 
+ Container jaeger Starting 
+ Container fluentd Starting 
+ Container otel-collector Starting 
+ Container flask_app Started 
+ Container prometheus Started 
+ Container jaeger Started 
+ Container fluentd Started 
+ Container fastapi_app Starting 
+ Container otel-collector Started 
+ Container fastapi_app Started 
+ Container nginx_proxy Starting 
+ Container nginx_proxy Started 
+ Container locust Starting 
+ Container locust Started 

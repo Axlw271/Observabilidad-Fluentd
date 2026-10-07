@@ -105,4 +105,49 @@ services:
     # propio proceso de Locust corriendo DENTRO de su contenedor
     # (como con nginx -> api), así que el DNS interno de la red de
     # compose sí funciona aquí sin problema.
-    command: -f /mnt/locust/locustfile.py --host http://nginxdock
+    command: -f /mnt/locust/locustfile.py --host http://nginx:80
+
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib:latest
+    container_name: otel-collector
+    # Mount the config and expose necessary ports
+    volumes:
+      - ./otel-collector-config.yaml:/etc/otelcol-contrib/config.yaml
+    ports:
+      - "4317:4317"   # OTLP gRPC
+      - "4318:4318"   # OTLP HTTP
+      - "8888:8888"   # Collector metrics
+      - "8889:8889"   # Prometheus exporter
+    restart: unless-stopped
+
+  jaeger:
+    image: cr.jaegertracing.io/jaegertracing/jaeger:2.19.0
+    container_name: jaeger
+    ports:
+      - "16686:16686" # Jaeger UI
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    volumes:
+      - ./prometheus.yaml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"   # Prometheus UI
+  
+  #Implementación de Flask para pruebas de logging y tracing.
+  flask:
+    build: ./flask_app
+    container_name: flask_app
+    ports:
+      - "5000:5000"
+    environment:
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://otel-collector:4318
+      - OTEL_EXPORTER_OTLP_PROTOCOL=http/protobuf
+      - OTEL_SERVICE_NAME=flask_app
+    logging:
+      # también van a Fluentd.
+      driver: fluentd
+      options:
+        fluentd-address: localhost:24224
+        tag: docker.flask
+        fluentd-async: "true"

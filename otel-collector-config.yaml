@@ -1,0 +1,42 @@
+# otel-collector-config.yaml
+# Custom collector configuration for local testing
+#Prueba para ver si levanta Opentelemetry CollectorDocke
+
+receivers:
+  otlp:
+    protocols:
+      # gRPC receiver on the standard port
+      grpc:
+        endpoint: 0.0.0.0:4317
+      # HTTP receiver for applications that prefer HTTP/JSON
+      http:
+        endpoint: 0.0.0.0:4318
+
+processors:
+  # Batch processor groups telemetry for efficient processing
+  batch:
+    timeout: 5s
+    send_batch_size: 256
+
+exporters:
+  debug:
+    verbosity: detailed
+  otlp/jaeger:              # nuevo
+    endpoint: jaeger:4317
+    tls:
+      insecure: true        # necesario: no configuramos TLS entre contenedores
+
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [debug, otlp/jaeger]
+    metrics:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [debug]
+    logs:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [debug]
