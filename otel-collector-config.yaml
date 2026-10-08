@@ -1,6 +1,6 @@
 # otel-collector-config.yaml
 # Custom collector configuration for local testing
-#Prueba para ver si levanta Opentelemetry CollectorDocke
+#En ese archivo se pueden modificar los logs que otel-collector muestra.
 
 receivers:
   otlp:

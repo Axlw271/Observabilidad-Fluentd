@@ -13,6 +13,7 @@ def format(self, record: logging.LogRecord) -> str:
             "timestamp": datetime.now(timezone.utc).isoformat(),
             "security": , #modificar
             "actorOrigin": ,
+            "Tipo operación": ,
             "level": record.levelname,
             "message": record.getMessage(),
         }

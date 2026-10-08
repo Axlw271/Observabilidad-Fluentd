@@ -1,2 +1,4 @@
 
 fluentd/log/*.log
+run-compose.bat
+run-compose.log

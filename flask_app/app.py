@@ -10,13 +10,13 @@ from opentelemetry._logs import set_logger_provider
 from opentelemetry.sdk._logs import LoggerProvider, LoggingHandler
 from opentelemetry.sdk._logs.export import BatchLogRecordProcessor
 from opentelemetry.exporter.otlp.proto.grpc._log_exporter import OTLPLogExporter
-from opentelemetry.sdk.resources import Resource
+from opentelemetry.sdk.resources import Resdockource
 
 from opentelemetry import trace
 from opentelemetry.sdk.trace import TracerProvider
 from opentelemetry.sdk.trace.export import BatchSpanProcessor
 from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import OTLPSpanExporter
-from opentelemetry.instrumentation.flask import FlaskInstrumentor
+from opentelemetry.instrumentation.flask import FlaskInstrumentor  #Flask instrumentation para opentelemetry
 
 app = Flask(__name__)
 
@@ -51,7 +51,7 @@ stdout_handler.setFormatter(JSONFormatter())
 # el Collector recibiría los logs sin saber que son de "flask-app"
 # (útil para diferenciarlos de los de FastAPI en Jaeger/Prometheus/
 # donde sea que termines enviándolos desde el Collector).
-resource = Resource.create({"service.name": "flask-app"})
+resource = Resource.create({"service.name": "flask-app"})  #Los logs se dirigen hacia otel-collector
 logger_provider = LoggerProvider(resource=resource)
 set_logger_provider(logger_provider)
 
@@ -78,7 +78,7 @@ if not logger.handlers:
 # Reutilizamos el mismo "resource" de arriba (misma identidad de
 # servicio para logs y trazas, así Jaeger/Collector los reconocen
 # como el mismo "flask-app").
-tracer_provider = TracerProvider(resource=resource)
+tracer_provider = TracerProvider(resource=resource) #Las trzas se dirigen hacia otel-collector
 trace.set_tracer_provider(tracer_provider)
 
 trace_exporter = OTLPSpanExporter(endpoint="otel-collector:4317", insecure=True)
